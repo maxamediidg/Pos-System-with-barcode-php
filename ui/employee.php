@@ -33,7 +33,12 @@ if($f_size>=1000000){
 
     $_SESSION['status']= "max file should be 1MB";
     $_SESSION['status_code']="warning";
-}else{
+}
+
+
+
+
+else{
   if(move_uploaded_file($f_tmp, $store)){
 
 $photo = $f_newfile;
@@ -142,7 +147,7 @@ else{
 
 
 
-<table class="table  table-hover">
+<table id="table_employee" class="table  table-hover">
     <thead>
       <tr>
         <th>#</th>
@@ -172,12 +177,12 @@ else{
 <td>
 <div class="btn-group">
 
-<a href="Details.php?id=' . $row->id . '" class="btn btn-warning btn-xs" role="button"><span class="fa fa-eye" style="color:#ffffff" data-toggle="tooltip" title="View product"></span></a>
+<a href="Details.php?id=' . $row->id . '" class="btn btn-warning btn-xs" role="button"><span class="fa fa-eye" style="color:#ffffff" data-toggle="tooltip" title="employee Details"></span></a>
 
-<a href="editproduct.php?id=' . $row->id . '" class="btn btn-success btn-xs" role="button"><span class="fa fa-edit" style="color:#ffffff" data-toggle="tooltip" title="edit Product"></span></a>
+<a href="editemployee.php?id=' . $row->id . '" class="btn btn-success btn-xs" role="button"><span class="fa fa-edit" style="color:#ffffff" data-toggle="tooltip" title="edit employee"></span></a>
 
  
-<button id=' . $row->id . ' class="btn btn-danger btn-xs btndelete"><span class="fa fa-trash" style="color:#ffffff" data-toggle="tooltip" title="delete product"></span></button>
+<button id=' . $row->id . ' class="btn btn-danger btn-xs btndelete"><span class="fa fa-trash" style="color:#ffffff" data-toggle="tooltip" title="delete employee"></span></button>
 
 </di>
 </td>
@@ -233,6 +238,22 @@ else{
 include_once("footer.php");
 
 ?>
+
+
+<script>
+  $(document).ready(function() {
+    $('#table_employee').DataTable();
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+
+</script
 
 
 <?php 

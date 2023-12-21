@@ -244,7 +244,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <li class="nav-item">
             <a href="productlist.php" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+            <i class="fa fa-list-ol"  style='font-size:15px;color:cyan' ></i>
               <p>
              Product list
                 
@@ -254,7 +254,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="employee.php" class="nav-link">
-            <i class='fas fa-user-friends' style='font-size:28px;color:yellow'></i>
+            <i class='fas fa-user-friends' style='font-size:15px;color:yellow'></i>
               <p>
             employee
                 
@@ -289,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="tablereport.php" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
              Sales Report

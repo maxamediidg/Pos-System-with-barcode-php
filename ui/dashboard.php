@@ -8,11 +8,11 @@ if($_SESSION['useremail']==""){
     header('location:../index.php');
 }
 
-include_once"header.php";
+include_once "header.php";
 
 ?>
-<!-- 
-<!-- 
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -40,21 +40,152 @@ include_once"header.php";
           <div class="col-lg-12">
           <div class="card card-primary card-outline">
               <div class="card-header">
-                <h5 class="m-0">Featured</h5>
+                <h5 class="m-0">REPORT SUMMERY</h5>
               </div>
               <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+
+              <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+              <?php 
+                        $sql1 ="SELECT * from  tbl_category";
+$query1 = $pdo -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totclass=$query1->rowCount();
+?>
+                          <span class="report-title">Total Category</span>
+                          <h4><?php echo htmlentities($totclass);?></h4>
+                          <a href="category.php" class="btn btn-light"><span class="report-count"> View Category</span></a>
+              </div>
+              
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+  
+              <?php 
+                        $sql1 ="SELECT * from  tbl_product";
+$query1 = $pdo -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totclass=$query1->rowCount();
+?>
+                          <span class="report-title">Total Products</span>
+                          <h4><?php echo htmlentities($totclass);?></h4>
+                          <a href="productlist.php" class="btn btn-light"><span class="report-count"> View Product</span></a>
+
+
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              
+              <?php 
+                        $sql1 ="SELECT * from  tbl_invoice";
+$query1 = $pdo -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totclass=$query1->rowCount();
+?>
+                          <span class="report-title">Total Orders</span>
+                          <h4><?php echo htmlentities($totclass);?></h4>
+                          <a href="orderlist.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
+              
+
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+              <?php 
+                        $sql1 ="SELECT * from  tbl_invoice_details";
+$query1 = $pdo -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totclass=$query1->rowCount();
+?>
+                          <span class="report-title">Total Invoice</span>
+                          <h4><?php echo htmlentities($totclass);?></h4>
+                          <a href="" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
+              
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
+              <div class="inner">
+              <?php 
+                        $sql1 ="SELECT * from  tbl_employee";
+$query1 = $pdo -> prepare($sql1);
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totclass=$query1->rowCount();
+?>
+                          <span class="report-title">Total Employee</span>
+                          <h4><?php echo htmlentities($totclass);?></h4>
+                          <a href="employee.php" class="btn btn-light"><span class="report-count"> View Employee</span></a>
+              
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+
+
+      
+                
+
+
+               
               </div>
             </div>
 
             
-            
            
-
-            
             
             </div>
 
@@ -67,7 +198,7 @@ include_once"header.php";
     </div>
     <!-- /.content -->
   </div>
-  /.content-wrapper --> -->
+  <!-- /.content-wrapper -->
 
   
   <?php
