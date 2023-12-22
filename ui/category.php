@@ -100,6 +100,9 @@ if($delete->execute()){
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Category</h1>
+            <hr>
+            <a href="dashboard.php"  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success' class="btn btn-info"><span class="report-count">Back Dashboard</span></a>
+
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -203,6 +206,8 @@ echo '
 
 
 ?>
+
+
 
 
 

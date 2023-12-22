@@ -18,7 +18,10 @@ include_once"header.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Order List</h1>
+            <h1 class="m-0">Order List</h1> 
+            <hr>
+            <a href="dashboard.php"  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success' class="btn btn-info"><span class="report-count">Back Dashboard</span></a>
+
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -29,7 +29,7 @@ $_SESSION['useremail']=$row['useremail'];
 $_SESSION['role'] = $row['role'];
 
     }
-else if($row['useremail']==$useremail AND $row['userpassword']==$password and $row['role']=='user')
+else if($row['useremail']==$useremail AND $row['userpassword']==$password and $row['role']=='User')
 {
   $_SESSION['status']= "login success By user";
   $_SESSION['status_code']="success";

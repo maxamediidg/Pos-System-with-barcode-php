@@ -28,8 +28,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Select2 -->
   <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
-
-
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   
 </head>
 <body class="hold-transition sidebar-mini">

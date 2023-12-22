@@ -191,7 +191,9 @@ $row = $select->fetch(PDO::FETCH_OBJ);
 
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h5 class="m-0">POS</h5>
+                <a href="dashboard.php"  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info' class="btn btn-info"><span class="report-count">Back Dashboard</span></a>
+
+                <h5 class="m-0">POS</h5>          
               </div>
               <div class="card-body">
 

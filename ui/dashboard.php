@@ -124,7 +124,7 @@ $totclass=$query1->rowCount();
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-success">
               <div class="inner">
               <?php 
                         $sql1 ="SELECT * from  tbl_invoice_details";
@@ -147,10 +147,11 @@ $totclass=$query1->rowCount();
           <!-- ./col -->
         </div>
 
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-secondary">
-              <div class="inner">
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
               <?php 
                         $sql1 ="SELECT * from  tbl_employee";
 $query1 = $pdo -> prepare($sql1);
@@ -160,29 +161,32 @@ $totclass=$query1->rowCount();
 ?>
                           <span class="report-title">Total Employee</span>
                           <h4><?php echo htmlentities($totclass);?></h4>
-                          <a href="employee.php" class="btn btn-light"><span class="report-count"> View Employee</span></a>
+                          <a href="employee.php" class="btn btn-info"><span class="report-count"> View Employee</span></a>
               
               </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- /.info-box-content -->
             </div>
+            
+            <!-- /.info-box -->
           </div>
+          
+          <!-- /.col -->
+        </div>
+
+        
+          
           <!-- ./col -->
         </div>
+      
         <!-- /.row -->
         <!-- Main row -->
+    
 
 
-
-      
-                
-
-
-               
-              </div>
+              </div>             
             </div>
+
+            
 
             
            
