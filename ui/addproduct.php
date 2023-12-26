@@ -141,6 +141,8 @@ else{
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Add Product</h1>
+            <hr>
+            <a href="productlist.php" class="btn btn-info"><span class="report-count"> View product you entered</span></a>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

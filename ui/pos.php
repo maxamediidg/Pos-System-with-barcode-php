@@ -122,7 +122,7 @@ header('location: orderlist.php');
 
 ob_end_flush();
 
-$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =1");
+$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =2");
 $select->execute();
 $row = $select->fetch(PDO::FETCH_OBJ);
 

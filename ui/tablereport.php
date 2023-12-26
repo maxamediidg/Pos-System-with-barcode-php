@@ -201,10 +201,10 @@ if(isset($_POST["btnDateFilter"])){
                     $sel_tbl_invoice->execute();
                     while($row_tbl_invoice = $sel_tbl_invoice->fetch(PDO::FETCH_OBJ)){
                       echo "<tr>";
-                        echo "<td>{$row_tbl_invoice->invoice_id}</td>";
+                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-dark'>{$row_tbl_invoice->invoice_id}</td>";
                         echo "<td>{$row_tbl_invoice->order_date}</td>";
                         echo "<td>{$row_tbl_invoice->subtotal}</td>";
-                        echo "<td>{$row_tbl_invoice->discount}</td>";
+                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-warning'>{$row_tbl_invoice->discount}</td>";
                         echo "<td>{$row_tbl_invoice->sgst}</td>";
                         echo "<td>{$row_tbl_invoice->cgst}</td>";
                         echo "<td  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-danger'>{$row_tbl_invoice->total}</td>";

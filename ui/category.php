@@ -241,7 +241,7 @@ echo'
 
 <td>
 
-<button type="submit" class="btn btn-info" value="'.$row->catid.'" name="btnedit">Edit</button>
+<button type="submit" class="badge badge-info text-white p-2" value="'.$row->catid.'" name="btnedit">Edit</button>
 
 </td>
 

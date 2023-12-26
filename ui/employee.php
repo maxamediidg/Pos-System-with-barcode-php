@@ -247,18 +247,8 @@ include_once("footer.php");
 </script>
 
 
-<script>
-  $(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-
-
-</script
-
-
 <?php 
 if(isset($_SESSION['status'])&& $_SESSION['status']!=='')
-
 {
 
   ?>
