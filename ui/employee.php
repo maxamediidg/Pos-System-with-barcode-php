@@ -9,10 +9,12 @@ include_once'header.php';
 
 if(isset($_POST['btnsave'])){
 
-
+  $date = $_POST['date'];
   $name= $_POST['name'];
   $email= $_POST['email'];
   $phone= $_POST['phone'];
+
+  
 
   $f_name = $_FILES['image']['name'];
 $f_tmp = $_FILES['image']['tmp_name'];
@@ -34,8 +36,18 @@ if($f_size>=1000000){
     $_SESSION['status']= "max file should be 1MB";
     $_SESSION['status_code']="warning";
 }
+}
 
+if(isset($_POST['email'])){
+  $select=$pdo->prepare("select * from tbl_employee where email='$email'");
+$select->execute();
+  
+if($select->rowCount()>0){
 
+$_SESSION['status']= "Email already exists. Create Account from New Email";
+$_SESSION['status_code']="warning";
+
+}
 
 
 else{
@@ -44,13 +56,15 @@ else{
 $photo = $f_newfile;
 
 
-$insert=$pdo->prepare("insert into tbl_employee(name, email,phone, photo)
-values(:name,:email,:phone,:photo)");
+
+$insert=$pdo->prepare("insert into tbl_employee(name, email,phone, photo,joining_date)
+values(:name,:email,:phone,:photo,:join)");
 
 $insert->bindParam(':name', $name);
 $insert->bindParam(':email',$email);
 $insert->bindParam(':phone',$phone);
-$insert->bindParam(':photo', $photo);
+$insert->bindParam(':photo',$photo);
+$insert->bindParam(':join', $date);
 
 if($insert->execute()){
   
@@ -65,6 +79,26 @@ else{
   $_SESSION['status']= "only jpg, jpeg, png and gif can be uploaded";
   $_SESSION['status_code']="warning";
   
+}
+
+}
+
+
+error_reporting(0);
+
+$id=$_GET['id'];
+
+if(isset($id)){
+
+$delete =$pdo->prepare("delete from tbl_employee where id=".$id);
+if($delete->execute()){
+
+  $_SESSION['status']= "Account deleted successfully";
+  $_SESSION['status_code']="warning";
+}else{
+  
+$_SESSION['status']= "Account Is Not Deletd";
+$_SESSION['status_code']="warning";
 }
 
 
@@ -111,9 +145,15 @@ else{
 
 <div class="row">
   
-  <div class="col-md-4">
+  <div class="col-lg-12">
   <h3 class="text-center text-info">Add Record</h3>
  <form action="" method="post" enctype="multipart/form-data">
+
+
+ <div class="form-group">
+    <input type="date" name="date" class="form-control" required>
+ </div>
+
 
  <div class="form-group">
     <input type="text" name="name" class="form-control" placeholder="enter name" required>
@@ -136,25 +176,25 @@ else{
  </div>
 
  </form>   
-
-
   </div>
 
 
-  <div class="col-md-8">
+
+  <div class="col-lg-12">
   
   <h3 class="text-center text-info">Records present in the Database</h3>
 
 
 
 <table id="table_employee" class="table  table-hover">
-    <thead>
+    <thead class="bg-info text-dark">
       <tr>
         <th>#</th>
         <th>Image</th>
         <th>Name</th>
         <th>email</th>
         <th>phone</th>
+        <th>joining_date</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -172,6 +212,7 @@ else{
 <td> ' . $row->name . '</td>
 <td> ' . $row->email . '</td>
 <td> ' . $row->phone . '</td>
+<td> ' . $row->joining_date . '</td>
 
 
 <td>
@@ -182,7 +223,8 @@ else{
 <a href="editemployee.php?id=' . $row->id . '" class="btn btn-success btn-xs" role="button"><span class="fa fa-edit" style="color:#ffffff" data-toggle="tooltip" title="edit employee"></span></a>
 
  
-<button id=' . $row->id . ' class="btn btn-danger btn-xs btndelete"><span class="fa fa-trash" style="color:#ffffff" data-toggle="tooltip" title="delete employee"></span></button>
+<a href="employee.php?id='.$row->id.'"  class="btn btn-danger btn-xs btndelete"><span class="fa fa-trash" style="color:#ffffff" data-toggle="tooltip" title="delete employee"></span></a>
+
 
 </di>
 </td>

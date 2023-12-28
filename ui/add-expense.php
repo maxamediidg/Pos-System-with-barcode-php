@@ -99,7 +99,7 @@ function fill_product($pdo)
 
 <div class="row">
   
-  <div class="col-md-4">
+  <div class="col-lg-8">
   <h3 class="text-center text-info">Add expenses</h3>
  <form role="form" method="post" action="">
 								<div class="form-group">
@@ -128,7 +128,7 @@ function fill_product($pdo)
 							</form>
 
 
-  <div class="col-md-8">
+  <div class="col-lg-12">
   
   <h3 class="text-center text-info">Manage Expense</h3>
 

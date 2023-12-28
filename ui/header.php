@@ -250,13 +250,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <li class="nav-item">
             <a href="productlist.php" class="nav-link">
-            <i class="fa fa-list-ol"  style='font-size:15px;color:cyan' ></i>
+            <i class="fa fa-list-ol"  style='font-size:17px;color:cyan' ></i>
               <p>
-             Product list
+                Product list
                 
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="invoice_details.php" class="nav-link">
+            <i class="fas fa-barcode"></i>                 
+                   <p>
+             Invoice list           
+              </p>
+            </a>
+          </li>
+
+
+          
 
           <li class="nav-item">
             <a href="employee.php" class="nav-link">
@@ -284,7 +296,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="orderlist.php" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
              OrderList
@@ -347,7 +359,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class='fas fa-coins' style='font-size:24px;color:red'></i>
+            <i class='fas fa-coins' style='font-size:20px;color:red'></i>
             <span class="right badge badge-success">💵</span>
               <p>
                 Expense report
@@ -356,7 +368,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="expense" class="nav-link">
+                <a href="Day-expenses.php" class="nav-link">
                 <i class='fas fa-hand-holding-usd'></i>
                   <p>Day-expenses</p>
                 </a>

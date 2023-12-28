@@ -10,6 +10,7 @@ if($_SESSION['useremail']==""){
 
 include_once "header.php";
 
+
 ?>
 
 
@@ -137,7 +138,7 @@ $totclass=$query1->rowCount();
 ?>
                           <span class="report-title">Total Invoice</span>
                           <h4><?php echo htmlentities($totclass);?></h4>
-                          <a href="" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
+                          <a href="invoice_details.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
               
               </div>
               <div class="icon">
@@ -149,41 +150,132 @@ $totclass=$query1->rowCount();
           <!-- ./col -->
         </div>
 
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-              <?php 
-                        $sql1 ="SELECT * from  tbl_employee";
-$query1 = $pdo -> prepare($sql1);
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totclass=$query1->rowCount();
-?>
-                          <span class="report-title">Total Employee</span>
-                          <h4><?php echo htmlentities($totclass);?></h4>
-                          <a href="employee.php" class="btn btn-info"><span class="report-count"> View Employee</span></a>
-              
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            
-            <!-- /.info-box -->
-          </div>
-          
-          <!-- /.col -->
+    <!-- /.info-box -->
         </div>
-
         
-          
-          <!-- ./col -->
+          <!-- /.col -->
+   <!-- /.info-box-content -->
+            </div>
+    <!-- /.info-box -->
         </div>
-      
-        <!-- /.row -->
-        <!-- Main row -->
-    
 
+</div>
+</div>
+
+
+<br />
+<br />
+<div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="m-0">Best Selling Product</h5>
+              </div>
+
+<div class="row">
+                
+                <div class="col-md-5">
+                <table   class="datatable table table-bordered table-striped">
+                          <thead>
+                              <tr>
+                                 <th>Product Id</th>
+                                 <th>Product Name</th>
+                                 <th>Qty</th>
+                                 <th>Rate</th>
+                                 <th>Total</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+          
+                            <?php 
+                              
+          
+                              $select = $pdo->prepare("select * from tbl_invoice_details order by invoice_id DESC limit 10");
+                              $select->execute();;
+                              while($row_tbl_invoice = $select->fetch(PDO::FETCH_OBJ)){
+                                echo "<tr>";
+                                  echo "<td>{$row_tbl_invoice->product_id}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-secondary'>{$row_tbl_invoice->product_name}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success'>{$row_tbl_invoice->qty}</td>";
+                                  echo "<td  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-primary'>{$row_tbl_invoice->rate}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-danger'>{$row_tbl_invoice->saleprice}</td>";
+                                echo "</tr>";
+                              }
+                            ?>
+                             
+          
+                          </tbody>
+                          <tfoot>
+                              <tr>
+                                 <th>product ID</th>
+                                 <th>product Name</th>
+                                 <th>Qty</th>
+                                 <th>Rate ID</th>
+                                 <th>Total</th>
+                              </tr>
+                          </tfoot>
+                      </table>
+                </div>
+                <div class="col-lg-7">
+              <div class="card-header">
+                <h5 class="m-0">Earning by Date</h5>
+              </div>
+                <table  id="table_invoice_list"  class="datatable table table-bordered table-striped">
+                          <thead>
+                              <tr>
+                                 <th>Invoice ID</th>
+                                 <th>Order Date</th>
+                                 <th>Total</th>
+                                 <th>Paymenty Type</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+          
+                            <?php 
+                              
+          
+                              $select = $pdo->prepare("select * from tbl_invoice order by invoice_id ASC");
+                              $select->execute();;
+                              while($row_tbl_invoice = $select->fetch(PDO::FETCH_OBJ)){
+                                echo "<tr>";
+                                  echo "<td>{$row_tbl_invoice->invoice_id}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-secondary'>{$row_tbl_invoice->order_date}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info'>{$row_tbl_invoice->total}</td>";
+                                  if($row_tbl_invoice->payment_type == "Cash"){
+                                    echo '<td><span class="badge badge-warning">'.$row_tbl_invoice->payment_type.'</span></td>';
+                                
+                                
+                                }else if($row_tbl_invoice->payment_type == "Card"){
+                                    echo '<td><span class="badge badge-success">'.$row_tbl_invoice->payment_type.'</span></td>';
+                                
+                                }else{
+                                    echo '<td><span class="badge badge-danger">'.$row_tbl_invoice->payment_type.'</span></td>';
+                                
+                                }
+                                echo "</tr>";
+                              }
+                            ?>
+                             
+          
+                          </tbody>
+                          <tfoot>
+                              <tr>
+                                 <th>Invoice ID</th>
+                                 <th>Order Date</th>
+                                 <th>Total</th>
+                                 <th>Paymenty TYpe</th>
+                              </tr>
+                          </tfoot>
+                      </table>
+                </div>
+                </div>
+</div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          Next
+        </div>
+      </div>
 
               </div>             
             </div>
@@ -212,3 +304,9 @@ $totclass=$query1->rowCount();
 include_once("footer.php");
 
 ?>
+
+<script>
+  $(document).ready(function() {
+    $('#table_invoice_list').DataTable();
+  });
+</script>

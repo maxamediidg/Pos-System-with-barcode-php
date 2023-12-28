@@ -16,6 +16,7 @@ if(isset($_POST["btnDateFilter"])){
   $todate_timestamp = strtotime($todate);
 
 
+
   $sel_tbl_invoice_query = "SELECT * FROM `tbl_invoice` WHERE `order_date` BETWEEN :fromdate_timestamp and :todate_timestamp"; 
   $sel_tbl_invoice = $pdo->prepare($sel_tbl_invoice_query);
   $sel_tbl_invoice->bindParam(":fromdate_timestamp",$fromdate_timestamp);
@@ -42,13 +43,14 @@ if(isset($_POST["btnDateFilter"])){
 
     <!-- Main content -->
     <section class="content container-fluid">
-      <div class="box box-warning">
+    <div class="box box-warning">
         <div class="box-header with-border">
             <?php if(isset($_POST["btnDateFilter"])){ ?>
               <h3 class="box-title"><?php echo "From ".$_POST["datepicker_1"]." to ".$_POST["datepicker_2"] ?></h3>
               <?php }else{ ?>
                 <h3 class="box-title">All Sales Report</h3>
               <?php } ?>
+      
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -119,6 +121,8 @@ if(isset($_POST["btnDateFilter"])){
  
   <br>
   <br>
+
+  
   
   <div class="row">
         <?php 
@@ -171,7 +175,7 @@ if(isset($_POST["btnDateFilter"])){
     <!-- /.col -->
       </div>
 
-      
+    
 
       <!-- /.row -->
       <br>
@@ -195,6 +199,7 @@ if(isset($_POST["btnDateFilter"])){
                     </tr>
                 </thead>
                 <tbody>
+
                   <?php 
                     
 
@@ -210,7 +215,18 @@ if(isset($_POST["btnDateFilter"])){
                         echo "<td  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-danger'>{$row_tbl_invoice->total}</td>";
                         echo "<td>{$row_tbl_invoice->paid}</td>";
                         echo "<td>{$row_tbl_invoice->due}</td>";
-                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info'>{$row_tbl_invoice->payment_type}</td>";
+                        if($row_tbl_invoice->payment_type == "Cash"){
+                          echo '<td><span class="badge badge-warning">'.$row_tbl_invoice->payment_type.'</span></td>';
+                      
+                      
+                      }else if($row_tbl_invoice->payment_type == "Card"){
+                          echo '<td><span class="badge badge-success">'.$row_tbl_invoice->payment_type.'</span></td>';
+                      
+                      }else{
+                          echo '<td><span class="badge badge-danger">'.$row_tbl_invoice->payment_type.'</span></td>';
+                      
+                      }
+                          
                       echo "</tr>";
                     }
                   ?>
