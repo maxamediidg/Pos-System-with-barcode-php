@@ -194,7 +194,7 @@ $_SESSION['status_code']="warning";
         <th>Name</th>
         <th>email</th>
         <th>phone</th>
-        <th>joining_date</th>
+        <th>Date of Admission</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -218,7 +218,7 @@ $_SESSION['status_code']="warning";
 <td>
 <div class="btn-group">
 
-<a href="Details.php?id=' . $row->id . '" class="btn btn-warning btn-xs" role="button"><span class="fa fa-eye" style="color:#ffffff" data-toggle="tooltip" title="employee Details"></span></a>
+<a href="employeeDetails.php?id=' . $row->id . '" class="btn btn-warning btn-xs" role="button"><span class="fa fa-eye" style="color:#ffffff" data-toggle="tooltip" title="employee Details"></span></a>
 
 <a href="editemployee.php?id=' . $row->id . '" class="btn btn-success btn-xs" role="button"><span class="fa fa-edit" style="color:#ffffff" data-toggle="tooltip" title="edit employee"></span></a>
 
