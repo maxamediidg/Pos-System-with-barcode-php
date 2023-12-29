@@ -236,7 +236,7 @@ else{
 
                   <div class="form-group">
                     <label>sale Price</label>
-                    <input type="number" class="form-control" placeholder="Enter sale price" name="txtsaleprice"  required>
+                    <input type="number"  class="form-control" placeholder="Enter sale price" name="txtsaleprice"  required>
                   </div>
                 
                   <div class="form-group">

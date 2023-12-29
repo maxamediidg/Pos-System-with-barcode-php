@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link href="css/datepicker3.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
 
+  
+
 
 <!-- iCheck for checkboxes and radio inputs -->
 <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
@@ -260,8 +262,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="invoice_details.php" class="nav-link">
-            <i class="fas fa-barcode"></i>                 
-                   <p>
+            <i class="fas fa-file-invoice"></i>                
+               <p>
              Invoice list           
               </p>
             </a>
@@ -275,6 +277,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <i class='fas fa-user-friends' style='font-size:15px;color:yellow'></i>
               <p>
             employee
+                
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="listparcodeimage.php" class="nav-link">
+            <i class="fas fa-barcode"></i>                 
+              <p>
+             Barcode 128
                 
               </p>
             </a>
@@ -333,7 +346,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="tablereport.php" class="nav-link">
             <i class="nav-icon fas fa-chart-pie" ></i>
               <p>
-                 Transaction Report
+                Sales Report
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -341,7 +354,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="tablereport.php" class="nav-link">
                 <i class="nav-icon fas fa-chart-line"></i>
-                  <p>Sales report</p>
+                  <p>Table report</p>
                 </a>
               </li>
             </ul>

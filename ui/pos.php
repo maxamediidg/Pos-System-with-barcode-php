@@ -122,7 +122,7 @@ header('location: orderlist.php');
 
 ob_end_flush();
 
-$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =2");
+$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =1");
 $select->execute();
 $row = $select->fetch(PDO::FETCH_OBJ);
 
@@ -207,6 +207,17 @@ $row = $select->fetch(PDO::FETCH_OBJ);
                       </div>
                       <input type="text" class="form-control" placeholder="Scan Barcode" name="txtbarcode" id="txtbarcode_id">
                     </div>
+
+                    
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="text" name="customername"  placeholder="Customer Name" id="customername" class="form-control" required="true">
+                    </div>
+
+               
 
                     <form action="" method="post" name="">
 
@@ -519,6 +530,7 @@ include_once("footer.php");
             }
 $("#txtbarcode_id").val("");
 
+
           }
 
 
@@ -647,6 +659,7 @@ $("#txtbarcode_id").val("");
       tr.find(".saleprice").val(quantity.val() * tr.find(".price").text());
       calculate(0, 0);
     }
+    
 
 
   });

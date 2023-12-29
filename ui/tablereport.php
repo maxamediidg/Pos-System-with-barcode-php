@@ -47,7 +47,8 @@ if(isset($_POST["btnDateFilter"])){
         <div class="box-header with-border">
             <?php if(isset($_POST["btnDateFilter"])){ ?>
               <h3 class="box-title"><?php echo "From ".$_POST["datepicker_1"]." to ".$_POST["datepicker_2"] ?></h3>
-              <?php }else{ ?>
+              <?php }
+              else{ ?>
                 <h3 class="box-title">All Sales Report</h3>
               <?php } ?>
       
@@ -280,7 +281,6 @@ if(isset($_POST["btnDateFilter"])){
   </div>
   <!-- /.content-wrapper -->
 
-  
   <?php
 
 include_once("footer.php");
@@ -292,3 +292,5 @@ include_once("footer.php");
     $('#table_report').DataTable();
   });
 </script>
+
+

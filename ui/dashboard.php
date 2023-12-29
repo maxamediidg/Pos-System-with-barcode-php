@@ -10,7 +10,6 @@ if($_SESSION['useremail']==""){
 
 include_once "header.php";
 
-
 ?>
 
 
@@ -112,7 +111,7 @@ $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totclass=$query1->rowCount();
 ?>
-                          <span class="report-title">Total Orders</span>
+                          <span class="report-title">Total Invoice</span>
                           <h4><?php echo htmlentities($totclass);?></h4>
                           <a href="orderlist.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
               
@@ -136,7 +135,7 @@ $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totclass=$query1->rowCount();
 ?>
-                          <span class="report-title">Total Invoice</span>
+                          <span class="report-title">Total Invoice Detail</span>
                           <h4><?php echo htmlentities($totclass);?></h4>
                           <a href="invoice_details.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
               
@@ -163,6 +162,7 @@ $totclass=$query1->rowCount();
 </div>
 
 
+    
 <br />
 <br />
 <div class="card card-primary card-outline">
@@ -188,7 +188,7 @@ $totclass=$query1->rowCount();
                             <?php 
                               
           
-                              $select = $pdo->prepare("select * from tbl_invoice_details order by invoice_id DESC limit 10");
+                              $select = $pdo->prepare("select * from tbl_invoice_details order by invoice_id DESC limit 11");
                               $select->execute();;
                               while($row_tbl_invoice = $select->fetch(PDO::FETCH_OBJ)){
                                 echo "<tr>";
@@ -208,7 +208,7 @@ $totclass=$query1->rowCount();
                                  <th>product ID</th>
                                  <th>product Name</th>
                                  <th>Qty</th>
-                                 <th>Rate ID</th>
+                                 <th>Rate</th>
                                  <th>Total</th>
                               </tr>
                           </tfoot>
