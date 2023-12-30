@@ -171,14 +171,16 @@ if(isset($_POST["btnDateFilter"])){
       <!-- /.row -->
       <br>
       <br>
-         
+    
+      <div id="container">
       <div class="row">
       <div class="col-lg-12">
       <table id="table_report"  class="datatable table table-bordered table-striped">
                 <thead>
                     <tr>
-                       <th>Invoice Id</th>
-                       <th>order Date</th>
+                       <th>ID</th>
+                       <th>Order Date</th>
+                       <th>Customer</th>
                        <th>subtotal</th>
                        <th>Discount</th>
                        <th>SGST</th>
@@ -198,7 +200,8 @@ if(isset($_POST["btnDateFilter"])){
                     while($row_tbl_invoice = $sel_tbl_invoice->fetch(PDO::FETCH_OBJ)){
                       echo "<tr>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-dark'>{$row_tbl_invoice->invoice_id}</td>";
-                        echo "<td>{$row_tbl_invoice->order_date}</td>";
+                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success'>{$row_tbl_invoice->order_date}</td>";
+                        echo "<td>{$row_tbl_invoice->customer_name}</td>";
                         echo "<td>{$row_tbl_invoice->subtotal}</td>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-warning'>{$row_tbl_invoice->discount}</td>";
                         echo "<td>{$row_tbl_invoice->sgst}</td>";
@@ -228,6 +231,7 @@ if(isset($_POST["btnDateFilter"])){
                     <tr>
                        <th>Invoice Id</th>
                        <th>order Date</th>
+                       <th>customer</th>
                        <th>Subtotal</th>
                        <th>Discount</th>
                        <th>SGST</th>
@@ -241,7 +245,7 @@ if(isset($_POST["btnDateFilter"])){
             </table>
       </div>
       </div>
-      
+      </div>  
 
 </div>
 
@@ -300,7 +304,7 @@ include_once("footer.php");
     });
 </script>
 
-
+<!-- 
 <script>
     $(function() {
         // Enable datepicker
@@ -310,17 +314,19 @@ include_once("footer.php");
         // Form submission using AJAX
         $("form").submit(function(event) {
             event.preventDefault();
-            var formData = $(this).serialize();
+            var order_date = $(this).serialize();
 
             // AJAX request to generate report
             $.ajax({
                 type: "post",
-                url: "tablreport.php",
-                data: formData,
+                url: "generate_report.php",
+                data: {
+                id : order_date,
                 success: function(response) {
-                    $("#table_report").html(response);
+                    $("#container").html(response);
                 }
+              }
             });
         });
     });
-</script>
+</script> -->

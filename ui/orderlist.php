@@ -52,6 +52,7 @@ include_once"header.php";
 
                     <td>Invoice ID</td>
                     <td>Order Date</td>
+                    <td>Customer Name</td>
                     <td>Total</td>
                     <td>Paid</td>
                     <td>Due</td>
@@ -76,6 +77,7 @@ include_once"header.php";
 <tr>
 <td> ' . $row->invoice_id . '</td>
 <td> ' . $row->order_date . '</td>
+<td> ' . $row->customer_name . '</td>
 <td> ' . $row->total . '</td>
 <td> ' . $row->paid . '</td>
 <td> ' . $row->due . '</td>';

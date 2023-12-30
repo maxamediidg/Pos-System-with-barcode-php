@@ -28,6 +28,7 @@ function fill_product($pdo)
 if (isset($_POST['btnsaveorder'])) {
 
   $orderdate = date('y-m-d');
+  $customer = $_POST['customername'];
   $subtotal = $_POST['txtsubtotal'];
   $discount = $_POST['txtdiscount'];
   $sgst     = $_POST['txtsgst'];
@@ -47,8 +48,9 @@ if (isset($_POST['btnsaveorder'])) {
   $arr_price   = $_POST['price_c_arr'];
   $arr_total   = $_POST['saleprice_arr'];
 
-$insert = $pdo->prepare("insert into tbl_invoice(order_date,subtotal,discount,sgst,cgst,total,payment_type,due,paid) value(:order_date,:subtotal,:discount,:sgst,:cgst,:total,:payment_type,:due,:paid)");
+$insert = $pdo->prepare("insert into tbl_invoice(customer_name,order_date,subtotal,discount,sgst,cgst,total,payment_type,due,paid) value(:customer_name,:order_date,:subtotal,:discount,:sgst,:cgst,:total,:payment_type,:due,:paid)");
 
+$insert->bindParam(':customer_name', $customer);
 $insert->bindParam(':order_date', $orderdate);
 $insert->bindParam(':subtotal', $subtotal);
 $insert->bindParam(':discount', $discount);
@@ -122,7 +124,7 @@ header('location: orderlist.php');
 
 ob_end_flush();
 
-$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =1");
+$select = $pdo->prepare("select * from tbl_taxdis where taxdis_id =3");
 $select->execute();
 $row = $select->fetch(PDO::FETCH_OBJ);
 
@@ -206,15 +208,6 @@ $row = $select->fetch(PDO::FETCH_OBJ);
                         <span class="input-group-text"><i class="fa fa-barcode"></i></span>
                       </div>
                       <input type="text" class="form-control" placeholder="Scan Barcode" name="txtbarcode" id="txtbarcode_id">
-                    </div>
-
-                    
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                        <i class="fa fa-user"></i></span>
-                      </div>
-                      <input type="text" name="customername"  placeholder="Customer Name" id="customername" class="form-control" required="true">
                     </div>
 
                
@@ -395,6 +388,16 @@ $row = $select->fetch(PDO::FETCH_OBJ);
                         <span class="input-group-text">dollar</span>
                       </div>
                     </div>
+
+                     
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="text" name="customername"  placeholder="Customer Name" id="customername" class="form-control" required="true">
+                    </div>
+
 
                     <hr style="height: 2px; border-width:0; color:black; background-color:black;">
 

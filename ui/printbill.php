@@ -47,7 +47,13 @@ $pdf->Ln(1);
 
 
 $pdf->SetFont('Arial', 'BI',8);
-$pdf->Cell(20,4,'Bill NO:',0,0,'');
+$pdf->Cell(20,4,'Bill To:',0,0,'');
+
+$pdf->SetFont('Courier', 'BI', 8);
+$pdf->Cell(40,4,$row->customer_name,0,1,'');
+
+$pdf->SetFont('Arial', 'BI',8);
+$pdf->Cell(20,4,'Invoice NO:',0,0,'');
 
 $pdf->SetFont('Courier', 'BI', 8);
 $pdf->Cell(40,4,$row->invoice_id,0,1,'');
