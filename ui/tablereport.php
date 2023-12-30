@@ -45,12 +45,7 @@ if(isset($_POST["btnDateFilter"])){
     <section class="content container-fluid">
     <div class="box box-warning">
         <div class="box-header with-border">
-            <?php if(isset($_POST["btnDateFilter"])){ ?>
-              <h3 class="box-title"><?php echo "From ".$_POST["datepicker_1"]." to ".$_POST["datepicker_2"] ?></h3>
-              <?php }
-              else{ ?>
-                <h3 class="box-title">All Sales Report</h3>
-              <?php } ?>
+           
       
 
 
@@ -59,20 +54,12 @@ if(isset($_POST["btnDateFilter"])){
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-2">       
           <div class="col-sm-6">
-            <h1 class="m-0">Table Report</h1>
-            <hr>
-                <a href="dashboard.php"  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info' class="btn btn-info"><span class="report-count">Back Dashboard</span></a>
-
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li> -->
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+            <h1 class="m-0">Sales report -> Table report</h1>
+          </div>
+          <a href="orderlist.php" class="btn btn-warning mr-4"><span class="report-count"> View Invoice</span></a>
+        </div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -83,9 +70,12 @@ if(isset($_POST["btnDateFilter"])){
         <div class="row">
           <div class="col-lg-12">
           <div class="card card-warning card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
+          <?php if(isset($_POST["btnDateFilter"])){ ?>
+              <h3 class="box-title"><?php echo "From ".$_POST["datepicker_1"]." to ".$_POST["datepicker_2"] ?></h3>
+              <?php }
+              else{ ?>
+                <h3 class="box-title">All Sales Report</h3>
+              <?php } ?>
               <div class="card-body">
               <form action="" method="POST" autocomplete="off">
               
@@ -96,7 +86,7 @@ if(isset($_POST["btnDateFilter"])){
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="date" class="form-control datepicker pull-right" id="datepicker_1" name="datepicker_1" value="<?php if(isset($_POST["datepicker_1"])){ echo $_POST["datepicker_1"]; }  ?>">
+                        <input type="text" class="form-control datepicker pull-right" id="datepicker_1" name="datepicker_1" value="<?php if(isset($_POST["datepicker_1"])){ echo $_POST["datepicker_1"]; }  ?>">
                     </div>
                 </div>
 
@@ -109,7 +99,7 @@ if(isset($_POST["btnDateFilter"])){
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="date" class="form-control datepicker pull-right" id="datepicker_2" name="datepicker_2" value="<?php if(isset($_POST["datepicker_2"])){ echo $_POST["datepicker_2"]; }  ?>">
+                        <input type="text" class="form-control datepicker pull-right" id="datepicker_2" name="datepicker_2" value="<?php if(isset($_POST["datepicker_2"])){ echo $_POST["datepicker_2"]; }  ?>">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -287,6 +277,7 @@ include_once("footer.php");
 
 ?>
 
+
 <script>
   $(document).ready(function() {
     $('#table_report').DataTable();
@@ -294,3 +285,42 @@ include_once("footer.php");
 </script>
 
 
+<script>
+    $(function() {
+        // Enable datepicker
+        $("#datepicker_1").datepicker();
+    });
+</script>
+
+
+<script>
+    $(function() {
+        // Enable datepicker
+        $("#datepicker_2").datepicker();
+    });
+</script>
+
+
+<script>
+    $(function() {
+        // Enable datepicker
+        $("#datepicker1").datepicker();
+        $("#datepicker2").datepicker();
+
+        // Form submission using AJAX
+        $("form").submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+
+            // AJAX request to generate report
+            $.ajax({
+                type: "post",
+                url: "tablreport.php",
+                data: formData,
+                success: function(response) {
+                    $("#table_report").html(response);
+                }
+            });
+        });
+    });
+</script>
