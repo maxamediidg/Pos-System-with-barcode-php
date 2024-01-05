@@ -201,7 +201,7 @@ if(isset($_POST["btnDateFilter"])){
                       echo "<tr>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-dark'>{$row_tbl_invoice->invoice_id}</td>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success'>{$row_tbl_invoice->order_date}</td>";
-                        echo "<td>{$row_tbl_invoice->customer_name}</td>";
+                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info'>{$row_tbl_invoice->customer_name}</td>";
                         echo "<td>{$row_tbl_invoice->subtotal}</td>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-warning'>{$row_tbl_invoice->discount}</td>";
                         echo "<td>{$row_tbl_invoice->sgst}</td>";

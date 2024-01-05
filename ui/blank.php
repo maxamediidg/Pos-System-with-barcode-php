@@ -43,12 +43,12 @@ include_once("header.php");
               </div>
             </div>
 
-            
-           
-            
+
+
+
             </div>
 
-            
+
           </div>
           <!-- /.col-md-6 -->
         </div>
@@ -59,7 +59,7 @@ include_once("header.php");
   </div>
   <!-- /.content-wrapper -->
 
-  
+
   <?php
 
 include_once("footer.php");

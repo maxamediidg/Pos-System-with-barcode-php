@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
- 
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/datepicker3.css" rel="stylesheet">
@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"/>
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        
+
           <li class="nav-item">
             <a href="dashboard.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -237,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-table"></i>
               <p>
                Category
-              
+
               </p>
             </a>
           </li>
@@ -247,40 +247,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-edit"></i>
               <p>
              Product
-                
+
               </p>
             </a>
           </li>
 
-          
+
           <li class="nav-item">
             <a href="productlist.php" class="nav-link">
             <i class="fa fa-list-ol"  style='font-size:17px;color:cyan' ></i>
               <p>
                 Product list
-                
+
               </p>
             </a>
           </li>
 
           <li class="nav-item">
             <a href="invoice_details.php" class="nav-link">
-            <i class="fas fa-file-invoice"></i>                
+            <i class="fas fa-file-invoice"></i>
                <p>
-             Invoice list           
+             Invoice list
               </p>
             </a>
           </li>
 
 
-          
+
 
           <li class="nav-item">
             <a href="employee.php" class="nav-link">
             <i class='fas fa-user-friends' style='font-size:15px;color:yellow'></i>
               <p>
             employee
-                
+
               </p>
             </a>
           </li>
@@ -288,10 +288,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="listparcodeimage.php" class="nav-link">
-            <i class="fas fa-barcode"></i>                 
+            <i class="fas fa-barcode"></i>
               <p>
              Barcode 128
-                
+
               </p>
             </a>
           </li>
@@ -299,35 +299,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-          
+
           <li class="nav-item">
             <a href="pos.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
              POS
-                
+
               </p>
             </a>
           </li>
 
-          
+
           <li class="nav-item">
             <a href="orderlist.php" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
              OrderList
-                
+
               </p>
             </a>
           </li>
 
-          
+
           <li class="nav-item">
             <a href="add-expense.php" class="nav-link">
             <i class='fas fa-donate' style='font-size:23px;color:darkwhite'></i>
               <p>
             Manage expenses
-                
+
               </p>
             </a>
           </li>
@@ -337,7 +337,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-list"></i>
               <p>
              sales report
-                
+
               </p>
             </a>
           </li> -->
@@ -372,7 +372,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-          
+
           <li class="nav-item">
             <a href="#" class="nav-link">
             <i class='fas fa-coins' style='font-size:20px;color:red'></i>
@@ -390,42 +390,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
             </ul>
-     
 
-            
 
-         
 
-          
+
+
+
+
           <li class="nav-item">
             <a href="tax_dis.php" class="nav-link">
               <i class="nav-icon fas fa-calculator"></i>
               <p>
              Tax
-                
+
               </p>
             </a>
           </li>
 
-          
-          
+
+
           <li class="nav-item">
             <a href="registration.php" class="nav-link">
               <i class="nav-icon fas fa-square"></i>
               <p>
              Registration
-                
+
               </p>
             </a>
           </li>
 
-          
+
           <li class="nav-item">
             <a href="changepassword.php" class="nav-link">
               <i class="nav-icon fas fa-lock"></i>
               <p>
              change Password
-                
+
               </p>
             </a>
           </li>
@@ -435,7 +435,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 logout
-                
+
               </p>
             </a>
           </li>

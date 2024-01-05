@@ -188,7 +188,7 @@ $totclass=$query1->rowCount();
                             <?php 
                               
           
-                              $select = $pdo->prepare("select * from tbl_invoice_details order by invoice_id DESC limit 11");
+                              $select = $pdo->prepare("select * from tbl_invoice_details order by invoice_id DESC limit 10");
                               $select->execute();;
                               while($row_tbl_invoice = $select->fetch(PDO::FETCH_OBJ)){
                                 echo "<tr>";
@@ -238,8 +238,8 @@ $totclass=$query1->rowCount();
                               while($row_tbl_invoice = $select->fetch(PDO::FETCH_OBJ)){
                                 echo "<tr>";
                                   echo "<td>{$row_tbl_invoice->invoice_id}</td>";
-                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-secondary'>{$row_tbl_invoice->customer_name}</td>";
-                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success'>{$row_tbl_invoice->order_date}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-warning'>{$row_tbl_invoice->customer_name}</td>";
+                                  echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-secondary'>{$row_tbl_invoice->order_date}</td>";
                                   echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-info'>{$row_tbl_invoice->total}</td>";
                                   if($row_tbl_invoice->payment_type == "Cash"){
                                     echo '<td><span class="badge badge-warning">'.$row_tbl_invoice->payment_type.'</span></td>';

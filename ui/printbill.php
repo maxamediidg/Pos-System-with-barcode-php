@@ -38,7 +38,7 @@ $pdf->Cell(60,8,'Star-Mall INC', 1,1,'C');
 
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(60,5,'PHONE NUMBER : 252 063 4820946',0,1,'C');
-$pdf->Cell(60,5,'WEBSITE : WWW.START.COM',0,1,'C');
+$pdf->Cell(60,5,'WEBSITE : WWW.STAR.COM',0,1,'C');
 
 
 //line(x1,y1,x2,y2);

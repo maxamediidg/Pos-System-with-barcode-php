@@ -69,7 +69,7 @@ include_once 'header.php';
                         echo "<td>{$row_tbl_invoice->invoice_id}</td>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-primary'>{$row_tbl_invoice->barcode}</td>";
                         echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-warning'>{$row_tbl_invoice->product_id}</td>";
-                        echo "<td>{$row_tbl_invoice->product_name}</td>";
+                        echo "<td style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-success'>{$row_tbl_invoice->product_name}</td>";
                         echo "<td>{$row_tbl_invoice->qty}</td>";
                         echo "<td  style='text-align:left;vertical-align:middle; font-size:17px;'><span class='badge badge-danger'>{$row_tbl_invoice->rate}</td>";
                         echo "<td>{$row_tbl_invoice->saleprice}</td>";
