@@ -233,6 +233,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
+            <a href="dashboardchart.php" class="nav-link">
+            <i class="nav-icon fas fa-chart-area"></i>
+              <p>
+               Dashboard chart 
+               
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="category.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>

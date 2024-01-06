@@ -97,6 +97,68 @@ include_once 'header.php';
       </div>
       </div>
     </div>
+     <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h5 class="m-0">Invoice Details product and qty Earning</h5>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+                        
+          <?php
+// Connect to the database
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'pos_barcode_db';
+
+$pdo = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+
+// Fetch data from the database
+$result = $pdo->query("SELECT product_name,saleprice FROM tbl_invoice_details ");
+
+// Convert data to JSON format
+$data = [];
+while ($row = $result->fetch_assoc()) {
+    $data[] = $row;
+}
+
+$pdo->close();
+?>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="col-lg-12">
+    <div style="width: 65%; margin: auto;">
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <script>
+        // Pass PHP data to JavaScript
+        var data = <?php echo json_encode($data); ?>;
+
+        // Create a pie chart using Chart.js
+        var ctx = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: data.map(item => item.product_name),
+                datasets: [{
+                    data: data.map(item => item.saleprice),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                    ],
+                }],
+            },
+        });
+    </script>
+
+
+              </div>
+          </div>
       </div>
 
               </div>
