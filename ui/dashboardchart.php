@@ -224,7 +224,7 @@ $conn->close();
             data: {
                 labels: data.map(item => item.product),
                 datasets: [{
-                    label: 'Value',
+                    label: 'stock',
                     data: data.map(item => item.stock),
                     backgroundColor: 'rgba(75, 192, 192, 0.8)',
                     borderWidth: 1,

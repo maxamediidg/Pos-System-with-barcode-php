@@ -54,7 +54,6 @@
 <!-- sweetalert2 -->
 <script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 </html>

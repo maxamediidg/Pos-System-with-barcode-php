@@ -63,13 +63,13 @@ include_once "header.php";
                           ?>
                           <span class="report-title">Total Category</span>
                           <h4><?php echo htmlentities($totclass); ?></h4>
-                          <a href="category.php" class="btn btn-light"><span class="report-count"> View Category</span></a>
+                          <a href="category.php" class="btn btn-warning"><span class="report-count"> View Category</span></a>
                         </div>
 
                         <div class="icon">
                           <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="category.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                       </div>
                     </div>
                     <!-- ./col -->
@@ -87,7 +87,7 @@ include_once "header.php";
                           ?>
                           <span class="report-title">Total Products</span>
                           <h4><?php echo htmlentities($totclass); ?></h4>
-                          <a href="productlist.php" class="btn btn-light"><span class="report-count"> View Product</span></a>
+                          <a href="productlist.php" class="btn btn-warning"><span class="report-count"> View Product</span></a>
 
 
                         </div>
@@ -112,7 +112,7 @@ include_once "header.php";
                           ?>
                           <span class="report-title">Total Invoice</span>
                           <h4><?php echo htmlentities($totclass); ?></h4>
-                          <a href="orderlist.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
+                          <a href="orderlist.php" class="btn btn-success"><span class="report-count"> View Invoice</span></a>
 
 
                         </div>
@@ -125,7 +125,7 @@ include_once "header.php";
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                       <!-- small box -->
-                      <div class="small-box bg-success">
+                      <div class="small-box bg-danger">
                         <div class="inner">
                           <?php
                           $sql1 = "SELECT * from  tbl_invoice_details";
@@ -136,7 +136,7 @@ include_once "header.php";
                           ?>
                           <span class="report-title">Total Invoice Detail</span>
                           <h4><?php echo htmlentities($totclass); ?></h4>
-                          <a href="invoice_details.php" class="btn btn-light"><span class="report-count"> View Invoice</span></a>
+                          <a href="invoice_details.php" class="btn btn-warning"><span class="report-count"> View Invoice</span></a>
 
                         </div>
                         <div class="icon">
