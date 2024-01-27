@@ -87,7 +87,7 @@ include_once "header.php";
                           ?>
                           <span class="report-title">Total Products</span>
                           <h4><?php echo htmlentities($totclass); ?></h4>
-                          <a href="productlist.php" class="btn btn-warning"><span class="report-count"> View Product</span></a>
+                          <a href="productlist.php" class="btn btn-outline-warning"><span class="report-count"> View Product</span></a>
 
 
                         </div>

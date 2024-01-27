@@ -1,5 +1,4 @@
 
-
 <?php
 
 include_once'connectdb.php';
@@ -217,16 +216,17 @@ $_SESSION['status_code']="warning";
 
 <td>
 <div class="btn-group">
+<div class="w-75 btn-group">
+      <a href="employeeDetails.php?id='.$row->id.'" class="btn btn-warning mx-2">
+     <i class="bi-bi-pencil-square"></i>  Details</a>
 
-<a href="employeeDetails.php?id=' . $row->id . '" class="btn btn-warning btn-xs" role="button"><span class="fa fa-eye" style="color:#ffffff" data-toggle="tooltip" title="employee Details"></span></a>
+<a href="editemployee.php?id=' . $row->id .'" class="btn btn-success mx-2">
+     <i class="bi-bi-pencil-square"></i>  Edit</a></div>
 
-<a href="editemployee.php?id=' . $row->id . '" class="btn btn-success btn-xs" role="button"><span class="fa fa-edit" style="color:#ffffff" data-toggle="tooltip" title="edit employee"></span></a>
+ <a href="employee.php?id='.$row->id.'"" class="btn btn-danger mx-2">
+     <i class="bi-bi-pencil-square"></i>  Delete </a>
 
- 
-<a href="employee.php?id='.$row->id.'"  class="btn btn-danger btn-xs btndelete"><span class="fa fa-trash" style="color:#ffffff" data-toggle="tooltip" title="delete employee"></span></a>
-
-
-</di>
+</div>
 </td>
 
 
