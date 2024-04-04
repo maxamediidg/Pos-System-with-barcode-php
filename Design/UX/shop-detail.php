@@ -1,6 +1,6 @@
 <?php
 include_once "headeruser.php";
-include_once "../ui/connectdb.php";
+include_once "../../ui/connectdb.php";
 
 ?>
 <?php
@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
                     <div class="col-lg-6">
                         <div class="border rounded">
                             <a href="#">
-                                <img src="../ui/productimages/<?php echo $products->image; ?>" class="img-fluid rounded" alt="Image">
+                                <img src="../../ui/productimages/<?php echo $products->image; ?>" class="img-fluid rounded" alt="Image">
                             </a>
                         </div>
                     </div>
