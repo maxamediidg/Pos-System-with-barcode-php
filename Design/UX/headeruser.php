@@ -1,3 +1,9 @@
+<?php 
+include_once "../../ui/connectdb.php";
+
+session_start();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,8 +80,9 @@
                                     <a href="testimonial.php" class="dropdown-item">Testimonial</a>
                                     <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
-                            </div>
+                            </div>             
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
+                           
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>

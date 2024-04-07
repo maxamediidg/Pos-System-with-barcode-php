@@ -3,7 +3,39 @@ include_once "headeruser.php";
 include_once "../../ui/connectdb.php";
 
 ?>
+
+
+
 <?php
+
+
+
+if (isset($_POST['submit'])) {
+
+    $pro_id = $_POST['pro_id'];
+    $pro_title = $_POST['pro_title'];
+    $pro_image = $_POST['pro_image'];
+    $pro_price = $_POST['pro_price'];
+    $pro_qty = $_POST['pro_qty'];
+    $user_id = $_POST['user_id'];
+
+    $insert = $pdo->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,user_id)
+ values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:user_id)");
+
+    $insert->execute([
+        ':pro_id' => $pro_id,
+        ':pro_title' => $pro_title,
+        ':pro_image' => $pro_image,
+        ':pro_price' => $pro_price,
+        ':pro_qty' => $pro_qty,
+        ':user_id' => $user_id,
+
+    ]);
+}
+
+
+
+
 //categories 
 $categories = $pdo->query("SELECT * FROM tbl_category");
 $categories->execute();
@@ -74,21 +106,51 @@ if (isset($_GET['id'])) {
                         </div>
                         <p class="mb-4"> <?php echo $products->description; ?> .</p>
                         <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                        <div class="input-group quantity mb-5" style="width: 100px;">
+                        <p class="mb-1">
+                            <strong>Quantity</strong>
+                              <form method="POST" id="form-data">
+                              <div class="col-sm-5">
+                                <input class="form-control" type="hidden" name="pro_title" value="<?php echo $products->product; ?>">
+                            </div>       
+                            <div class="col-sm-5">
+                                <input class="form-control" type="hidden" name="pro_image" value="<?php echo $products->image; ?>">
+                            </div>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="hidden" name="pro_price" value="<?php echo $products->saleprice; ?>">
+                            </div>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="hidden" name="user_id" value="<?php echo $_SESSION['userid']; ?>">
+                            </div>
+                            <div class="col-sm-5">
+                                <input class="form-control" type="hidden" name="pro_id" value="<?php echo $products->pid; ?>">
+                            </div>   
+                        </p>
+                        <!-- <div class="input-group quantity mb-5" style="width: 100px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                    <i class="fa fa-minus"></i>
+                                <button class="btn-insert btn btn-sm btn-minus rounded-circle bg-light border">
+                                    <i class="fa fa-minus" value="<?php echo $products->saleprice; ?>" name="pro_qty"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                            <input type="text" class="btn-insert form-control form-control-sm text-center border-0" value="1">
                             <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
+                                <button  class=" btn btn-sm btn-plus rounded-circle bg-light border">
+                                    <i class="fa fa-plus" value="<?php echo $products->saleprice; ?>" name="pro_qty"></i>
                                 </button>
+                            </div>
+                        </div>  -->
+                        
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input class="form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->saleprice; ?>" name="pro_qty">
                             </div>
                         </div>
-                        <a href="shop-detail.php?id=<?php echo $products->pid; ?>" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                        <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg">
+                                    <i class="fa fa-shopping-basket"></i> Add to Cart
+                                </button>
+     
+                        <!-- <a href="shop-detail.php?id=<?php echo $products->pid; ?>"  class=" btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i  class="fa fa-shopping-bag me-2 text-primary"  class=""></i> Add to cart</a> -->
                     </div>
+                                                </form>
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
@@ -508,3 +570,21 @@ if (isset($_GET['id'])) {
 <!-- Single Product End -->
 
 <?php include_once "footeruser.php"; ?>
+
+<script>
+     $(".btn-insert").on("click", function(e) {
+            e.preventDefault();
+
+            var form_data = $("#form-data").serialize() + '&submit=submit';
+
+            $.ajax({
+                url: "shop-detail.php?id=<?php echo $id; ?>",
+                method: "post",
+                data: form_data,
+                success: function() {
+                    alert("Product added to cart successfully");
+                    //$(".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
+                }
+            })
+        });
+</script>

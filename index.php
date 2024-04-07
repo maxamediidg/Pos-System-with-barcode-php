@@ -34,7 +34,7 @@ else if($row['useremail']==$useremail AND $row['userpassword']==$password and $r
   $_SESSION['status']= "login success By user";
   $_SESSION['status_code']="success";
 
-      header('refresh:1; ux/index.php'); 
+      header('refresh:1; Design/ux/index.php'); 
 
 $_SESSION['userid']=$row['userid'];
 $_SESSION['username']= $row['username'];

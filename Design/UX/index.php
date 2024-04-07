@@ -1,6 +1,10 @@
 <?php 
 include_once "headeruser.php"; 
 include_once "../../ui/connectdb.php";
+session_start();
+
+define("APPURL", "http://localhost/posbarcode/Design/UX");
+
 
 ?>
 <?php

@@ -25,8 +25,9 @@
                             <th scope="col">Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
+                            <th scope="col">Update</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Delete</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,9 @@
                                         </div>
                                     </div>
                                 </td>
+                                <td>
+                                            <a href="#" class="btn btn-warning">UPDATE</a>
+                                        </td>
                                 <td>
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
@@ -92,8 +96,11 @@
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
-                                    </div>
+                                    </div>    
                                 </td>
+                                <td>
+                                            <a href="#" class="btn btn-warning">UPDATE</a>
+                                        </td>
                                 <td>
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
@@ -115,6 +122,7 @@
                                 <td>
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
+                                
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
                                         <div class="input-group-btn">
@@ -129,10 +137,14 @@
                                             </button>
                                         </div>
                                     </div>
+                                    
                                 </td>
                                 <td>
+                                            <a href="#" class="btn btn-warning">UPDATE</a>
+                                        </td>
+                                <td>
                                     <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
+                                </td>         
                                 <td>
                                     <button class="btn btn-md rounded-circle bg-light border mt-4" >
                                         <i class="fa fa-times text-danger"></i>
@@ -142,10 +154,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-5">
-                    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
-                </div>
+                <div class="col">
+                        <a href="shop.php" class="mt-5 btn btn-info">Continue Shopping</a>
+                    </div>
                 <div class="row g-4 justify-content-end">
                     <div class="col-8"></div>
                     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
