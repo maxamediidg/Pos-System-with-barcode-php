@@ -17,10 +17,11 @@ if (isset($_POST['submit'])) {
     $pro_image = $_POST['pro_image'];
     $pro_price = $_POST['pro_price'];
     $pro_qty = $_POST['pro_qty'];
+    $pro_subtotoal = $_POST['pro_subtotoal'];
     $user_id = $_POST['user_id'];
 
-    $insert = $pdo->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,user_id)
- values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:user_id)");
+    $insert = $pdo->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,pro_subtotoal,user_id)
+ values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:pro_subtotoal,:user_id)");
 
     $insert->execute([
         ':pro_id' => $pro_id,
@@ -28,6 +29,7 @@ if (isset($_POST['submit'])) {
         ':pro_image' => $pro_image,
         ':pro_price' => $pro_price,
         ':pro_qty' => $pro_qty,
+        'pro_subtotoal'=>$pro_subtotoal,
         ':user_id' => $user_id,
 
     ]);
@@ -53,6 +55,17 @@ if (isset($_GET['id'])) {
 
     $products = $select->fetch(PDO::FETCH_OBJ);
 }
+?>
+
+<?php 
+    //validate cart products
+    if (isset($_SESSION['userid'])) {
+        $Validate = $pdo->query("select * from cart where pro_id ='$id' And user_id='$_SESSION[userid]' ");
+        $Validate->execute();
+    }
+ else {
+}
+
 ?>
 
 
@@ -116,14 +129,14 @@ if (isset($_GET['id'])) {
                                 <input class="form-control" type="hidden" name="pro_image" value="<?php echo $products->image; ?>">
                             </div>
                             <div class="col-sm-5">
-                                <input class="form-control" type="hidden" name="pro_price" value="<?php echo $products->saleprice; ?>">
+                                <input class="pro_price form-control" type="hidden" name="pro_price" value="<?php echo $products->saleprice; ?>">
                             </div>
                             <div class="col-sm-5">
                                 <input class="form-control" type="hidden" name="user_id" value="<?php echo $_SESSION['userid']; ?>">
                             </div>
                             <div class="col-sm-5">
                                 <input class="form-control" type="hidden" name="pro_id" value="<?php echo $products->pid; ?>">
-                            </div>   
+                            </div>                            
                         </p>
                         <!-- <div class="input-group quantity mb-5" style="width: 100px;">
                             <div class="input-group-btn">
@@ -139,14 +152,29 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>  -->
                         
-                        <div class="row">
                             <div class="col-sm-5">
-                                <input class="form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->saleprice; ?>" name="pro_qty">
+                                <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->quantity; ?>" name="pro_qty">
                             </div>
-                        </div>
+                        <div class="col-sm-5">
+                                <input class="subtotal_price form-control" type="hidden" name="pro_subtotoal" value="<?php echo $products->saleprice * $products->quantity; ?>">
+                            </div> 
+                        <?php if (isset($_SESSION['username'])) : ?>
+                            <?php if ($Validate->rowCount() > 0) : ?>
+
+                                <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg" disabled>
+                                    <i class="fa fa-shopping-basket"></i> Added to Cart
+                                </button>
+                            <?php else : ?>
+
                         <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg">
                                     <i class="fa fa-shopping-basket"></i> Add to Cart
-                                </button>
+                                </button> <?php endif; ?>
+                        <?php else : ?>
+                            <div class="mt-5 alert alert-success bg-success text-white text-center">
+                                log in to buy this product or add it to cart 
+                            </div>
+                        <?php endif; ?>
+
      
                         <!-- <a href="shop-detail.php?id=<?php echo $products->pid; ?>"  class=" btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i  class="fa fa-shopping-bag me-2 text-primary"  class=""></i> Add to cart</a> -->
                     </div>
@@ -572,6 +600,7 @@ if (isset($_GET['id'])) {
 <?php include_once "footeruser.php"; ?>
 
 <script>
+    
      $(".btn-insert").on("click", function(e) {
             e.preventDefault();
 
@@ -583,8 +612,26 @@ if (isset($_GET['id'])) {
                 data: form_data,
                 success: function() {
                     alert("Product added to cart successfully");
-                    //$(".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
+                    (".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
                 }
-            })
+            });
+
+            $(".pro_qty").mouseup(function () {
+                  
+                 
+
+                  var $el = $(this).closest('form');
+  
+  
+                    var pro_qty = $el.find(".pro_qty").val();
+                    var pro_price = $el.find(".pro_price").val();
+                      
+                    var subtotal = pro_qty * pro_price;
+                    //alert(subtotal);
+                    $el.find(".subtotal_price").val("");        
+  
+                    $el.find(".subtotal_price").val(subtotal);
+              });
+  
         });
 </script>
