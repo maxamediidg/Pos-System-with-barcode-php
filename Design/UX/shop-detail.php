@@ -17,11 +17,11 @@ if (isset($_POST['submit'])) {
     $pro_image = $_POST['pro_image'];
     $pro_price = $_POST['pro_price'];
     $pro_qty = $_POST['pro_qty'];
-    $pro_subtotoal = $_POST['pro_subtotoal'];
+    $pro_subtototal = $_POST['pro_subtototal'];
     $user_id = $_POST['user_id'];
 
-    $insert = $pdo->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,pro_subtotoal,user_id)
- values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:pro_subtotoal,:user_id)");
+    $insert = $pdo->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,pro_subtototal,user_id)
+ values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:pro_subtototal,:user_id)");
 
     $insert->execute([
         ':pro_id' => $pro_id,
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
         ':pro_image' => $pro_image,
         ':pro_price' => $pro_price,
         ':pro_qty' => $pro_qty,
-        'pro_subtotoal'=>$pro_subtotoal,
+        ':pro_subtototal'=>$pro_subtototal,
         ':user_id' => $user_id,
 
     ]);
@@ -155,9 +155,11 @@ if (isset($_GET['id'])) {
                             <div class="col-sm-5">
                                 <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->quantity; ?>" name="pro_qty">
                             </div>
-                        <div class="col-sm-5">
-                                <input class="subtotal_price form-control" type="hidden" name="pro_subtotoal" value="<?php echo $products->saleprice * $products->quantity; ?>">
-                            </div> 
+                            <div class="row">
+                            <div class="col-sm-5">
+                                <input class="subtotal_price form-control" type="text" name="pro_subtototal" value="<?php echo $products->saleprice * $products->quantity; ?>">
+                            </div>
+                        </div>
                         <?php if (isset($_SESSION['username'])) : ?>
                             <?php if ($Validate->rowCount() > 0) : ?>
 

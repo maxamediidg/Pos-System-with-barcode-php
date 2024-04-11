@@ -34,10 +34,10 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                     <tr>
                         <th scope="col">Products</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Price in USD</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Update</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Total In USD</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -58,18 +58,18 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                                     <?php echo $product->pro_price; ?>
                                 </td>
                                 <td>
-                                        <div class="input-group-btn">
-                                            <input class="pro_qty form-control"  type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $product->pro_qty; ?>" name="vertical-spin">
-                                        </div>
+                                    <div class="input-group-btn">
+                                        <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $product->pro_qty; ?>" name="vertical-spin">
+                                    </div>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">UPDATE</a>
+                                    <button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning">Update</button>
                                 </td>
                                 <td class="subtotal_price">
                                     <?php echo $product->pro_price * $product->pro_qty; ?>
                                 </td>
                                 <td>
-                                    <a href="javasript:void" class="text-danger"><i class="fa fa-times"></i></a>
+                                    <button  value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -82,29 +82,17 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
             </table>
         </div>
         <div class="col">
-            <a href="shop.php" class="mt-5 btn btn-info">Continue Shopping</a>
+            <a href="shop.php" class="mt-1 btn btn-info">Continue Shopping</a>
         </div>
         <div class="row g-4 justify-content-end">
             <div class="col-8"></div>
             <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
                     <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                        <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0">$96.00</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
-                            <div class="">
-                                <p class="mb-0">Flat rate: $3.00</p>
-                            </div>
-                        </div>
-                        <p class="mb-0 text-end">Shipping to Ukraine.</p>
-                    </div>
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1> 
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4">$99.00</p>
+                        <h3 class="mb-0 ps-4 me-4">Total : </h3>
+                        <h5 class="full_price mb-0 pe-4"></h5>
                     </div>
                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                 </div>
@@ -140,28 +128,69 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
         var subtotal = pro_qty * pro_price;
         $el.find(".subtotal_price").html("");
 
-        $el.find(".subtotal_price").append(subtotal + '$');
+        $el.find(".subtotal_price").append(subtotal +  '$');
 
-        //           $(".btn-update").on('click', function(e) {
+        $(".btn-update").on('click', function(e) {
 
-        //               var id = $(this).val();
+            var id = $(this).val();
 
 
-        //               $.ajax({
-        //                 type: "POST",
-        //                 url: "update-item.php",
-        //                 data: {
-        //                   update: "update",
-        //                   id: id,
-        //                   pro_amount: pro_amount
-        //                 },
+            $.ajax({
+                type: "POST",
+                url: "update-product.php",
+                data: {
+                    update: "update",
+                    id: id,
+                    pro_qty: pro_qty,
+                    subtotal: subtotal
+                },
 
-        //                 success: function() {
-        //                  // alert("done");
-        //                   //reload();
-        //                 }
-        //               })
-        //             });
+                success: function() {
+                    alert("done");
+                    //reload();
+                }
+            })
+        });
+
+        $(".btn-delete").on('click', function(e) {
+
+            var id = $(this).val();
+
+
+            $.ajax({
+                type: "POST",
+                url: "delete-product.php",
+                data: {
+                    delete: "delete",
+                    id: id,
+                },
+
+                success: function() {
+                    alert("deleted product successfully");
+                    reload();
+                }
+            })
+        });
+
+        function reload() {
+            $("body").load("cart.php");
+        }
+
+        fetch();
+        function fetch() {
+
+            setInterval(function() {
+                var sum = 0.0;
+                $('.subtotal_price').each(function() {
+                    sum += parseFloat($(this).text());
+                });
+                $(".full_price").html('Total Price In USD:  '+sum);
+
+
+
+            }, 4000);
+        }
+
 
 
         //    fetch();     
