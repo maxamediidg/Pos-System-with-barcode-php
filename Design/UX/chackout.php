@@ -1,5 +1,14 @@
-<?php include_once 'headeruser.php' ; ?>
+<?php 
+include_once 'headeruser.php' ; 
+include_once "../../ui/connectdb.php";
 
+
+$products = $pdo->query("select * from cart where user_id ='$_SESSION[userid]'");
+$products->execute();
+
+$allproducts = $products->fetchAll(PDO::FETCH_OBJ);
+
+?>
 
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
@@ -88,85 +97,58 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($allproducts as $product) : ?>
                                         <tr>
                                             <th scope="row">
                                                 <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                                    <img src="../../ui/productimages/<?php echo $product->pro_image; ?>" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
                                                 </div>
                                             </th>
-                                            <td class="py-5">Awesome Brocoli</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
+                                            <td class="py-5"> <?php echo $product->pro_title; ?> </td>
+                                            <td class="py-5">$ <?php echo $product->pro_price; ?></td>
+                                            <td class="py-5"><?php echo $product->pro_qty; ?></td>
+                                            <td class="py-5">$ <?php echo $product->pro_price * $product->pro_qty; ?></td>
                                         </tr>
-                                        <tr>
+                                        <?php endforeach; ?>
+                                        <tr>                                     
                                             <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Potatoes</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Big Banana</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td class="py-5"></td>
-                                            <td class="py-5"></td>
-                                            <td class="py-5">
-                                                <p class="mb-0 text-dark py-3">Subtotal</p>
-                                            </td>
-                                            <td class="py-5">
-                                                <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$414.00</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                            </th>
-                                            <td class="py-5">
-                                                <p class="mb-0 text-dark py-4">Shipping</p>
+                                            </th>                                        
+                                            <td class="py-4">
+                                                <h5 class="mb-0 text-dark py-4">Cart Total :</h5>
                                             </td>
                                             <td colspan="3" class="py-5">
                                                 <div class="form-check text-start">
-                                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping">
-                                                    <label class="form-check-label" for="Shipping-1">Free Shipping</label>
-                                                </div>
-                                                <div class="form-check text-start">
-                                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                                    <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
-                                                </div>
-                                                <div class="form-check text-start">
                                                     <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
-                                                    <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
+                                                    <label class="form-check-label" for="Shipping-3"><h3 class="mb-0 text-dark"> <?php if(isset($_SESSION['saleprice'])) : ?>
+                                                $ <?php echo $_SESSION['saleprice']; ?>
+                                            <?php endif; ?></h3></label>
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr>                                     
+                                            <th scope="row">
+                                            </th>                                        
+                                            <td class="py-4">
+                                                <h4 class="mb-0 text-dark py-4">Shipping</h4>
+                                            </td>
+                                            <td colspan="3" class="py-5">
+                                                <div class="form-check text-start">
+                                                    <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
+                                                    <label class="form-check-label" for="Shipping-3">Free Shipping: $20</label>
+                                                </div>
+                                            </td>
+                                        </tr>                  
                                         <tr>
                                             <th scope="row">
                                             </th>
                                             <td class="py-5">
-                                                <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
+                                                <h5 class="mb-0 text-dark text-uppercase py-3">ORDER TOTAL</h5>
                                             </td>
                                             <td class="py-5"></td>
                                             <td class="py-5"></td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$135.00</p>
+                                                    <h4 class="mb-0 text-dark">$ <?php echo $_SESSION['saleprice'] + 20; ?></h4>
                                                 </div>
                                             </td>
                                         </tr>

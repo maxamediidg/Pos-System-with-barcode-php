@@ -20,8 +20,31 @@ $products->execute();
 $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
 ?>
 
+<?php
+// Connect to the database
+$db_host = 'localhost';
+$db_user = 'root';
+$db_pass = '';
+$db_name = 'pos_barcode_db';
+
+$pdo = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 
+// Query to count the number of distinct categories
+$sql_categories = "SELECT COUNT(*) AS num_categories FROM tbl_category";
+$result_categories = $pdo->query($sql_categories);
+$row_categories = $result_categories->fetch_assoc();
+$num_categories = $row_categories['num_categories'];
+
+
+
+// echo "Total number of categories: " . $num_categories . "<br>";
+
+
+
+
+
+?>
 
 <!-- Single Page Header start -->
 <div class="container-fluid page-header py-5">
@@ -72,7 +95,7 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                                             <li>
                                                 <div class="d-flex justify-content-between fruite-name">
                                                     <a href="#"><i class="fas fa-apple-alt me-2"></i><?php echo $category->category; ?></a>
-                                                    <span>(3)</span>
+                                                    <span>3</</span>
                                                 </div>
                                             </li>
                                         </ul>

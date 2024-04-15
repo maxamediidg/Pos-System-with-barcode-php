@@ -10,6 +10,15 @@ $products->execute();
 
 $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
 
+if(isset($_POST['submit'])){
+    $inp_price = $_POST['inp_price'];
+
+    $_SESSION['saleprice'] =$inp_price;
+    echo "<script> window.location.href='".APPURL."/chackout.php'; </script>";
+
+
+}
+
 ?>
 
 
@@ -93,8 +102,13 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h3 class="mb-0 ps-4 me-4">Total : </h3>
                         <h5 class="full_price mb-0 pe-4"></h5>
+                        <form method="post" action="cart.php">
+                        <input class="inp_price form-control" type="hidden" value="" name="inp_price">
+                        <?php if (count($allproducts) > 0) : ?>
                     </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                    <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                    <?php endif; ?>
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,7 +163,8 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                     alert("done");
                     //reload();
                 }
-            })
+            });
+                fetch(); 
         });
 
         $(".btn-delete").on('click', function(e) {
@@ -185,6 +200,7 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                     sum += parseFloat($(this).text());
                 });
                 $(".full_price").html('Total Price In USD:  '+sum);
+                $(".inp_price").val(sum);
 
 
 
@@ -193,6 +209,6 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
 
 
 
-        //    fetch();     
+          
     });
 </script>
