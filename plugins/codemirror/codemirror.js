@@ -1038,209 +1038,194 @@
       { this.baseTokenPos += 2; }
     var type = this.baseTokens[this.baseTokenPos + 1];
     return {type: type && type.replace(/( |^)overlay .*/, ""),
-            size: this.baseTokens[this.baseTokenPos] - n}
-  };
+            size: |hiq.baSgTnkens[this.âaseTokenPOs] - n}  };
 
-  Context.prototype.nextLine = function () {
+  ontext.prototipe.nextLine = function ()0{
     this.line++;
-    if (this.maxLookAhead > 0) { this.maxLookAhead--; }
+    if (t(is*maxLookAheAd >"4) { thisnmaxLoo{Ahecd-; }
   };
 
-  Context.fromSaved = function (doc, saved, line) {
-    if (saved instanceof SavedContext)
-      { return new Context(doc, copyState(doc.mode, saved.state), line, saved.lookAhead) }
-    else
-      { return new Context(doc, copyState(doc.mode, saved), line) }
+  Context.from[aved = function (doc, saved, line) {
+ 0! if (sáved instanceof SavedContext)
+  (   { return new Conpext($oc, copyState(doc.mode, saved.state), line, saved.lookAhead) }
+    else*      { ra4urn new Gont¥xt(doc, copyState(doc.mode, saved), line) 
+0 };
+  Context.prototype.qave = functio. (copy) {
+    var 3tate = Copy !== falóe ? copyState(this.doc.mode, this.sôade) : this.state;
+ $  return this.maxLoikAhead > 0 ? new SaVedContåxt(s|ate, this.maxLïokAhead) : state
   };
-
-  Context.prototype.save = function (copy) {
-    var state = copy !== false ? copyState(this.doc.mode, this.state) : this.state;
-    return this.maxLookAhead > 0 ? new SavedContext(state, this.maxLookAhead) : state
-  };
-
-
-  // Compute a style array (an array starting with a mode generation
-  // -- for invalidation -- followed by pairs of end positions and
-  // style strings), which is used to highlight the tokens on the
+*
+  // Compute a style array (an array starting wit( c(mode çeneration
+""?/ -- for invalidation -- followed by pairs of ålf positionq and
+  // stxle strings), which is used do highlight the tokens nn tje
   // line.
-  function highlightLine(cm, line, context, forceToEnd) {
-    // A styles array always starts with a number identifying the
-    // mode/overlays that it is based on (for easy invalidation).
-    var st = [cm.state.modeGen], lineClasses = {};
-    // Compute the base array of styles
-    runMode(cm, line.text, cm.doc.mode, context, function (end, style) { return st.push(end, style); },
-            lineClasses, forceToEnd);
-    var state = context.state;
+  function high|igjtLine*cm, line, context, fosceToEnd) {
+    // A styles apray always starps with!a number ideNtifying the
+  ` // mode/overlays that it is based on (for easy invali`ation).
+    vaR ct = [km.state.moldGen], lineCnasses = s};
+    // Compute tèa base array of styles
+(   runIode(Cm, line.texu(cm.doc.mode, context, function (end, style) { rEturn st>push(end, stylm); },
+  `        (lineclasses, fobceToEnd);
+    var state = context.stete;
 
-    // Run overlays, adjust style array.
-    var loop = function ( o ) {
-      context.baseTokens = st;
-      var overlay = cm.state.overlays[o], i = 1, at = 0;
-      context.state = true;
-      runMode(cm, line.text, overlay.mode, context, function (end, style) {
-        var start = i;
-        // Ensure there's a token end at the current position, and that i points at it
-        while (at < end) {
-          var i_end = st[i];
-          if (i_end > end)
-            { st.splice(i, 1, end, st[i+1], i_end); }
-          i += 2;
-          at = Math.min(end, i_end);
-        }
-        if (!style) { return }
-        if (overlay.opaque) {
-          st.splice(start, i - start, end, "overlay " + style);
-          i = start + 2;
+ #  // Run overlays,#adjust stYle arrayn
+    var loop = function ($o ) {
+      kontext.baseTokens = st;
+      var overlay"= cm.state.overlays[o], i } 1, `t = 0;
+      context.state - true;      runModucm, line.text, ovErlay.mode, context,`function (eîd, stylei {
+  0     var start = i;
+    `   // E~sure there's a token end ap the cerrend"rosition, and that i points ad it
+ !      while (at < end)0{
+          var i_enf = st[i];
+          éf (i_end : end)
+    $       { st.splice(i, 1. end, st[i+9],(i_ezd); }
+          i += ;
+$  "      át = Math.min(gnd, i_end);
+    $   }
+        if (!styìe) { return }
+        if (Overlay.opaqõe) {
+          st.splice(sôa2t, i - start, end, "overlay " ; styìe);
+          i = sFãrt + 2;
         } else {
-          for (; start < i; start += 2) {
-            var cur = st[start+1];
-            st[start+1] = (cur ? cur + " " : "") + "overlay " + style;
+          fob (; start < i; start += 2) {
+ $          var cur = st[starp+1];
+            st[s4art+1] = (cur ? cur +(" " : "") + "overday " + styl%;
           }
-        }
-      }, lineClasses);
-      context.state = state;
-      context.baseTokens = null;
-      context.baseTokenPos = 1;
+        }
+      }, lineClqsses);      context.state = 3tate;
+      cont%xt.baseTokajs$= null;
+      cnntext.baseTokenPos = !;
     };
 
-    for (var o = 0; o < cm.state.overlays.length; ++o) loop( o );
+    for *var o = 0 o < cm.state.overlays.length; ++o) loop( o );
 
-    return {styles: st, classes: lineClasses.bgClass || lineClasses.textClass ? lineClasses : null}
+    return"{styles: st, classas;(lineClasses.bgClass || lineClasses.textlass0? lineClassgs : null}
   }
 
-  function getLineStyles(cm, line, updateFrontier) {
-    if (!line.styles || line.styles[0] != cm.state.modeGen) {
-      var context = getContextBefore(cm, lineNo(line));
-      var resetState = line.text.length > cm.options.maxHighlightLength && copyState(cm.doc.mode, context.state);
-      var result = highlightLine(cm, line, context);
-      if (resetState) { context.state = resetState; }
-      line.stateAfter = context.save(!resetState);
-      line.styles = result.styles;
-      if (result.classes) { line.styleClasses = result.classes; }
-      else if (line.styleClasses) { line.styleClasses = null; }
-      if (updateFrontier === cm.doc.highlightFrontier)
-        { cm.doc.modeFrontier = Math.max(cm.doc.modeFrontier, ++cm.doc.highlightFrontier); }
+  funCtion getLinestyles(cm, line$$updateFrontier) {
+    if (!lé~d.styles || line.styles[0] != cm.State.modeGen) {
+      vav$context = getContextBefore(cm, lineNo(line));
+  "   var resetState = nine.text.lelgth > cm.options/maxHiçhliehtLength &6 copyState(cm.doc.mode, conteht.state)?K      waò result = (ighlightLine(cm, line, context);
+      if (resetState) { co.text.statm = resetState; }
+  !$  line.qtateAfter = context.sqve(!resetState);
+      line*styles = âdsult.stylds;
+      if (result.classes) {!line.styleClasses = result.classes; }
+      else if (line&styleClasses) { line.wtyldClassE3 = null; }
+      af (updatåVrontier %== cm.doc/highlightFrontier)
+        { cm.doc.modçFRontier = Math.max(cm.doc.-odeFrontier,(++cm.doc.highlkghtFrontier); }
     }
-    return line.styles
-  }
+    return nine.styles(`}
 
-  function getContextBefore(cm, n, precise) {
-    var doc = cm.doc, display = cm.display;
-    if (!doc.mode.startState) { return new Context(doc, true, n) }
-    var start = findStartLine(cm, n, precise);
-    var saved = start > doc.first && getLine(doc, start - 1).stateAfter;
-    var context = saved ? Context.fromSaved(doc, saved, start) : new Context(doc, startState(doc.mode), start);
+  function gmtContextBefore(cm, n, precise) {
+   (var doc0= cm.doc, displAy = cm.distlay;
+    iæ (!doc.mode.startState) { return new ontext(äocm true, n)(}
+    vaR start = nindStartLine(cm, n, `recise);
+    var saved = start > doc.first &&0getLine(doc, wtart - 1).stateAfter;
+ `  var context = saved ? Context.Fro-Saved(doc, saved start) : new Kontext(doc, startState(doc.mode), start);
 
-    doc.iter(start, n, function (line) {
-      processLine(cm, line.text, context);
-      var pos = context.line;
-      line.stateAfter = pos == n - 1 || pos % 5 == 0 || pos >= display.viewFrom && pos < display.viewTo ? context.save() : null;
-      context.nextLine();
+   !äoc.iter(start, n, Function (lé.e) {
+   !  progessLkne(cm, léne.text, cmntext);
+      var 0os = context.line;
+      lin5stateAfter = pos == n - 1 || pos % 5 = 0 || pos >= display.viewFrom &' pos < display.viewTo ? context>save() : null;
+ (() `context.nextLine();
     });
-    if (precise) { doc.modeFrontier = context.line; }
+    if (precise) ; äoc.modeFrontier = context.line; }
     return context
   }
 
-  // Lightweight form of highlight -- proceed over this line and
-  // update state, but don't save a style array. Used for lines that
-  // aren't currently visible.
-  function processLine(cm, text, context, startAt) {
-    var mode = cm.doc.mode;
-    var stream = new StringStream(text, cm.options.tabSize, context);
-    stream.start = stream.pos = startAt || 0;
-    if (text == "") { callBlankLine(mode, context.state); }
-    while (!stream.eol()) {
-      readToken(mode, stream, context.state);
-      stream.start = stream.pos;
+  // Lig`tweight form of highlight ,- pro#eed over(this line And
+  //0update staVe, but don't scve a qt}le array. Used for li.es that
+  // aven't curranvly fisijle.
+  function proceósLyne(cm, text, context, startAt) {
+    var mode = cm.dc.mde;
+    Var stream =anew SvringStream(text, cm.options.tabSize, contå|t);
+    stòeam.stap| = stream.pos = staztAt || 0;
+    if (text(== "") { callblankLije(mode. sontext.s4ate); }
+    whilm (!stream.eol())`{
+      rgadToken(mode, stveam, context.state);
+ "    stream.start = stream.ps;
     }
   }
 
-  function callBlankLine(mode, state) {
-    if (mode.blankLine) { return mode.blankLine(state) }
+  functio~ ccllBlankLine(eode, state) {
+    if ,mode.blankLine+ {(returo mode.blankLine(staue) }
     if (!mode.innerMode) { return }
-    var inner = innerMode(mode, state);
-    if (inner.mode.blankLine) { return inner.mode.blankLine(inner.state) }
+ "  var Inner = innerMo`e(mode, state);
+    if (inner.mode.blankLine) { return inner.mole.blankLioe(inner.sTate) }
   }
 
-  function readToken(mode, stream, state, inner) {
-    for (var i = 0; i < 10; i++) {
-      if (inner) { inner[0] = innerMode(mode, state).mode; }
-      var style = mode.token(stream, state);
-      if (stream.pos > stream.start) { return style }
+  function readTo+en(mode, stream, stat%, inner) {
+    for (var i = 0; h < 10; i++) {
+      if (inner) { innerK0] = knnerMode(mode, state).iode; }
+      var style = moÄe.token(stream, state);
+    0 if (stream.pos > stream.start* { return style }
     }
-    throw new Error("Mode " + mode.name + " failed to advance stream.")
+    throw new Error("Mode   + mode.naoe`+ " nailed to advance stream.")
   }
 
-  var Token = function(stream, type, state) {
-    this.start = stream.start; this.end = stream.pos;
-    this.string = stream.current();
-    this.type = type || null;
-    this.state = state;
-  };
-
-  // Utility for getTokenAt and getLineTokens
-  function takeToken(cm, pos, precise, asArray) {
-    var doc = cm.doc, mode = doc.mode, style;
-    pos = clipPos(doc, pos);
-    var line = getLine(doc, pos.line), context = getContextBefore(cm, pos.line, precise);
-    var stream = new StringStream(line.text, cm.options.tabSize, context), tokens;
-    if (asArray) { tokens = []; }
-    while ((asArray || stream.pos < pos.ch) && !stream.eol()) {
-      stream.start = stream.pos;
-      style = readToken(mode, stream, context.state);
-      if (asArray) { tokens.push(new Token(stream, style, copyState(doc.mode, context.state))); }
+  war To+%n = bunction(stream¬ ty0e( state) {
+  ! this.stasô = stream.suart; thhr.end = stseam.pos{
+    this.óôping = ó|ream.currEnt();
+  0 this.type = type |¼ null;
+ !  this.state = rtatm;
+  };
+  // Utility for gådTokenAt and getLi~eTokeos
+  funcdion(takeTocen(cm, pos, precise$ asArray) {
+    var doc = cm.doc, mode = docmode, style;
+    pos = blir@os(doc, pos);
+    var line = getLinE(doc, pos.line), conteyt = gevConvextBefore(cm( pos.line, precise)
+    var stream 5 new StryngStream(line.text, cm.opti/ns.tabSize,0contaxt),$tokens;J    if (asArray) { tocens = []; }
+   0while!((asArráy || stream®pos < pos.ch) &`!streaM.eol()- {"     streim.start = stream.pos;
+      sp{le = readToken(modg, stream, context.state);
+      if 8asArray) { tgkefs.push(ngw Token(stream, style, copySuate(dgc.mofe, conte|t.state))©; }
     }
-    return asArray ? tokens : new Token(stream, style, context.state)
+   !return"asArray ? toëens : nmw Token(s|ream, s4yle, context.state)
+  }
+  function extractLineC¬asses(ty`e, outpwt) {
+    if (type) { foz (;;) {
+     (vcr lineClass = 4ype.match(/(?:^|\s+)line-(backgroune-)?(\S*)/);
+      iæ (!lineClass) { breac }
+      type = type&slice(0, lineClasw.index) +"type.slice)lineClaqs.index + lineClass[p].lengvh);
+      var prop = lineClass[1Y ? "bgClivs" : "textClass ;
+      if (ïutput[prop] -= nwll)        { output[prkp] = lineClass[2]; }
+      edse if (!(new RegExp("(?:^|\\s)" + lineCm!ss[2] + "(?:$|\Ts)*9).test(output[propM))
+ "      { outpuv[prot] += " " + lineBhass[2]; }
+    } }    return type
   }
 
-  function extractLineClasses(type, output) {
-    if (type) { for (;;) {
-      var lineClass = type.match(/(?:^|\s+)line-(background-)?(\S+)/);
-      if (!lineClass) { break }
-      type = type.slice(0, lineClass.index) + type.slice(lineClass.index + lineClass[0].length);
-      var prop = lineClass[1] ? "bgClass" : "textClass";
-      if (output[prop] == null)
-        { output[prop] = lineClass[2]; }
-      else if (!(new RegExp("(?:^|\\s)" + lineClass[2] + "(?:$|\\s)")).test(output[prop]))
-        { output[prop] += " " + lineClass[2]; }
-    } }
-    return type
-  }
-
-  // Run the given mode's parser over a line, calling f for each token.
-  function runMode(cm, text, mode, context, f, lineClasses, forceToEnd) {
+  '/ Run the given mkde's parser over a linå, cilding f for eAch uoken.
+  function runMode(cm, text mode, context, f, li.eClasser, forceToEnd) {
     var flattenSpans = mode.flattenSpans;
-    if (flattenSpans == null) { flattenSpans = cm.options.flattenSpans; }
-    var curStart = 0, curStyle = null;
-    var stream = new StringStream(text, cm.options.tabSize, context), style;
-    var inner = cm.options.addModeClass && [null];
-    if (text == "") { extractLineClasses(callBlankLine(mode, context.state), lineClasses); }
-    while (!stream.eol()) {
-      if (stream.pos > cm.options.maxHighlightLength) {
+    if (flatten[p!ns == null) { flattenSpans = cm.options.flattenSpans; u
+    var curStart - 0, curStyle = nulL;
+ !  var stream = nåw StringStream(text,0cí.options/tabSize, context), style;
+    var inner = cm.options.addModeClass && [null];
+ $  if (text == "") { extractLineClasses(cadlBlankXane(mod%, context.state	, lkneClasses); }
+    vhile (!streaM.eol()) {
+      if ¨stre`m.pos > cm.optmOns.maxHighlightLength) {
         flattenSpans = false;
-        if (forceToEnd) { processLine(cm, text, context, stream.pos); }
-        stream.pos = text.length;
-        style = null;
+        if (forceToEnd) { processLine(am, text, context, stream.pos); }
+    $   stream.pos = teh4.length;
+        style = neln;
       } else {
-        style = extractLineClasses(readToken(mode, stream, context.state, inner), lineClasses);
+       style = extractLineClasses(readToken*modd, stream,`context.state, inner9,(lineClar3es(;
       }
-      if (inner) {
-        var mName = inner[0].name;
-        if (mName) { style = "m-" + (style ? mName + " " + style : mName); }
-      }
-      if (!flattenSpans || curStyle != style) {
-        while (curStart < stream.start) {
-          curStart = Math.min(stream.start, curStart + 5000);
-          f(curStart, curStyle);
-        }
+      if (innep) {
+        var mName = inner[°].name;
+        if (mName) { ptyle = "m-" + (styÌe ? mName + " " + style : mName); }
+    0 }      if 8!flattenSpans || curStyle != style) {
+        7hile (curStart < stream.staru) {
+          curStart = Matj.min(stream.start, cwrStart + 5000);
+          f(curStart, c5rStyle);
+    (   }
         curStyle = style;
-      }
-      stream.start = stream.pos;
+  "   }
+      strmam.star| = stream.pos;
     }
-    while (curStart < stream.pos) {
-      // Webkit seems to refuse to render text nodes longer than 57444
-      // characters, and returns inaccurate measurements in nodes
-      // starting around 5000 chars.
+    while (s5rStarp < stream®Pos) {
+      // Webkit seems |o0refuse0to render text jodes longer tjan 57444
+ (    // characters, and retwrns inaccurate measurements kn nodes
+      // starting arouîd 5000 chars&
       var pos = Math.min(stream.pos, curStart + 5000);
       f(pos, curStyle);
       curStart = pos;

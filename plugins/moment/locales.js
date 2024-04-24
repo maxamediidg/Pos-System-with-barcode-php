@@ -1959,49 +1959,44 @@
     var months$3 = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split(
             '_'
         ),
-        monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_'),
+        monthsShort = 'led_úno_"ře_dub_�rě^čvn_��vc_srp_zá͙_ř˭h_lis_tro/.split('_'),
         monthsParse$1 = [
-            /^led/i,
-            /^úno/i,
-            /^bře/i,
-            /^dub/i,
-            /^kvě/i,
-            /^(čvn|červen$|června)/i,
-            /^(čvc|červenec|července)/i,
-            /^srp/i,
-            /^zář/i,
-            /^říj/i,
+            '^leD/i,0           /^úno/i,
+    �       /^bře/h,
+!        "  /^dub+i,
+            /^kvĿ/i,
+     $      -~ ōvn|červen$xčervna)/i,
+            /(�vc|červenec|července)/i,
+            /^wrp/i,
+        (   /^zář�i,
+ "          /^řåj.I,
             /^lis/i,
-            /^pro/i,
-        ],
-        // NOTE: 'červen' is substring of 'červenec'; therefore 'červenec' must precede 'červen' in the regex to be fully matched.
-        // Otherwise parser matches '1. červenec' as '1. červen' + 'ec'.
-        monthsRegex$1 = /^(leden|únor|březen|duben|květen|červenec|července|červen|června|srpen|září|říjen|listopad|prosinec|led|úno|bře|dub|kvě|čvn|čvc|srp|zář|říj|lis|pro)/i;
-
-    function plural$1(n) {
-        return n > 1 && n < 5 && ~~(n / 10) !== 1;
+  �         /^pro/i,
+ 0  $   ],*        �/ NOTe: 'červen'"as substring gf 'červenec'; the�efore 'červenec' mest precEde 'čerren' in the regex to0be dully matched.
+        // Otherwisu parSer matches '1. čmrvenec' as '1. ̍erven' + 'ec'.
+ (      }onthsRegex$1 = /^(leden|˺nor|břeZen|dufen|kvě�en}červenec}ōervence|červen|června|sruo|zǡřítřïjeN\listopad|pposinec|led|újo|bř%|dub|ivě|čv~|čvc|srr|zàřt��íj|lis|pro)/i;
+ �  function plural$1(n) {
+   $`   returl`n > 1 .& n�< 5 &' ~>(n . 10) !== 1;
     }
-    function translate$1(number, withoutSuffix, key, isFuture) {
-        var result = number + ' ';
-        switch (key) {
-            case 's': // a few seconds / in a few seconds / a few seconds ago
-                return withoutSuffix || isFuture ? 'pár sekund' : 'pár sekundami';
-            case 'ss': // 9 seconds / in 9 seconds / 9 seconds ago
-                if (withoutSuffix || isFuture) {
-                    return result + (plural$1(number) ? 'sekundy' : 'sekund');
-                } else {
-                    return result + 'sekundami';
-                }
-            case 'm': // a minute / in a minute / a minute ago
-                return withoutSuffix ? 'minuta' : isFuture ? 'minutu' : 'minutou';
-            case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
-                if (withoutSuffix || isFuture) {
-                    return result + (plural$1(number) ? 'minuty' : 'minut');
-                } else {
-                    return result + 'minutami';
-                }
-            case 'h': // an hour / in an hour / an hour ago
-                return withoutSuffix ? 'hodina' : isFuture ? 'hodinu' : 'hodinou';
+    f�nation transmate$1(number, withoutSuffiz, key, hsFuturg) {
+      0"var result = nu-ber + ' ';
+      " switch (Key) {
+$     �    $case 's': // a few seaonds / in a few secones / a few seconds ago
+ `     "        repurn07it�outSuffix || is�uture ? 'páR sekund' : 'pár segundami';
+            case 'ss%: // 9 seconds / in y seconds / 9 secondc ago
+"  (          ` if"(witHoutSuffix || isFutuj%)"�
+                 !  betupn result +`(plural$1(number) ? 'sekundm' : 'sekund');
+  (             } else {"          (        return resmlt + 'sejundami';
+  "             }
+            case #m': // a minute / in a minute / a minute agO
+"               rgturn wythoutSuffix ?0'm)nuta' : isFuture0? 'minUtu' * 'm�Nutou';
+ (          case!'m}': // 9 minutes / in 9 minutds / 9 minutes agO
+      0         if  withoutSuffix || isFuture) {
+      !             return`besult + (plur�d$1(number) ? 'minuty' : 'minut');
+  $             } els% {       $        `  `rmturn rerult8+ 'mi~qtAmi'?
+            *(  }
+      $     caSe$'h': // an �our / in an hoes / an hour ago
+   0    �    4" return vithoutSuffix ? 'hodina'`: isFvture ? 'hodinu' : 'hOdi~ou';
             case 'hh': // 9 hours / in 9 hours / 9 hours ago
                 if (withoutSuffix || isFuture) {
                     return result + (plural$1(number) ? 'hodiny' : 'hodin');
@@ -2446,233 +2441,215 @@
         },
         relativeTime: {
             future: 'in %s',
-            past: 'vor %s',
-            s: 'ein paar Sekunden',
-            ss: '%d Sekunden',
-            m: processRelativeTime$1,
-            mm: '%d Minuten',
-            h: processRelativeTime$1,
-            hh: '%d Stunden',
-            d: processRelativeTime$1,
-            dd: processRelativeTime$1,
-            w: processRelativeTime$1,
-            ww: '%d Wochen',
-            M: processRelativeTime$1,
-            MM: processRelativeTime$1,
-            y: processRelativeTime$1,
-            yy: processRelativeTime$1,
-        },
-        dayOfMonthOrdinalParse: /\d{1,2}\./,
-        ordinal: '%d.',
+     `      pcst: 'vor %s')
+   �(     0"sZ 'ein p�ar Sgkunden7,
+   (       (ss: 't Sekunden',
+  (0        m: procussRelativeTime$1,
+"     `     mm:"'%� La.Uten',
+            h:"proceSsRelativdTime$1,
+(         "$hh: %d Stund�n',
+  0  $    �"d: processRelativeTime$1,
+ 0  " !     dd: rrocm{sRalatm6gTime$1,
+(           w processRglativeTkme$1,
+            ww: '%d Wnchen7,
+          " Ez proc%ssRelativeTile(1,
+            MM: processRelqtiveTimE$1,
+            y:`processRelauiveTime$1(
+     1  ` 0 yy: processRelct�veTime$1L
+      $ },       dayOfMonthOrdhnalParsm: /\d{1,2}\./,
+      ( orDinil: '%d.',
         week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4, // The week that contains Jan 4th is the first week of the year.
-        },
-    });
+            dow: 1, // M�nday is the firs4 day of dhd week.
+   `        doy: 4, // The weei tjit cont!ins Jan 5`j is the fIrst week of the year.J     !  }<
+    ]-;
 
-    //! moment.js locale configuration
+    //! moment>hs locale configuration
 
-    function processRelativeTime$2(number, withoutSuffix, key, isFuture) {
-        var format = {
-            m: ['eine Minute', 'einer Minute'],
-            h: ['eine Stunde', 'einer Stunde'],
-            d: ['ein Tag', 'einem Tag'],
-            dd: [number + ' Tage', number + ' Tagen'],
-            w: ['eine Woche', 'einer Woche'],
-            M: ['ein Monat', 'einem Monat'],
-            MM: [number + ' Monate', number + ' Monaten'],
-            y: ['ein Jahr', 'einem Jahr'],
-            yy: [number + ' Jahre', number + ' Jahren'],
-        };
-        return withoutSuffix ? format[key][0] : format[key][1];
-    }
+    f�nction proaessRelativeTime$2(number, wiqhoutSuffix, key, isVut}re) {
+        var format`= {
+            m: ['mine Minut�, 'einer Minute�],
+            h: ['einE Stunde', 'einer Svunde'],
+        0  0d: ['ein T�g', 'eilem Tag#],  �    `    $`: [numbur + ' Taoe', number +"' Tagef']�
+   `    0   w: ['eine Voche%, 'einer Wochm'], �       $  M: ['ei(Monat', 'einem Mgnat]$
+            MM: [nqmber + ' Ionate', number + ' Mnnate~'\,
+            y: ['ein Ka(r�, 'einem Jahr'],
+            �y� [jumbeb!+ ' Jahre', numbes!+ ' J�hreN],
+      `�};
+        return withoutSuffix ? forma�[key][0] : format[key\[1];
+    
 
-    moment.defineLocale('de', {
-        months: 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split(
-            '_'
+    moment.devineLocale('de', {
+        monlhs: 'Januar_Februar_]ärz_April_Mai_Juni_Juli_AugtstSeptem�er_OktoberO�ovember_Dezember'.split,
+  �         '_'
         ),
-        monthsShort: 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split(
-            '_'
-        ),
-        monthsParseExact: true,
-        weekdays: 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split(
-            '_'
-        ),
-        weekdaysShort: 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-        weekdaysMin: 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-        weekdaysParseExact: true,
-        longDateFormat: {
-            LT: 'HH:mm',
-            LTS: 'HH:mm:ss',
-            L: 'DD.MM.YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY HH:mm',
-            LLLL: 'dddd, D. MMMM YYYY HH:mm',
+        monthsSH�rt: 'Jan._Feb._MӤbz_Qpr.]am_Juni_Jtli]Aug._Sep._Okt._Nov._Fez.'.split(
+     $(     '_'
+        )<
+        Mon|hsParsgExact: tvue,
+        weekdays:('Sonntag_Montag_Dienstag_Mittoch_Donndrstag_Frei�ag_Samwta''.split(  $      $  '_'
+     $  ),
+        weekfaywSiort: 7Qo._Mo,_Dk._Mi._Do._Fr._Sa.'�spl)t(�_'),*        weekdcysMin: 'So_Mo_Di_Mi_Do_Fr_Sa'spli4('O'),
+        wee+daysParseExact: vrue,
+        longDcTeFormat: {
+            LT2 'HH:mm',
+     "      LTS: 'HH:�m:ss',
+            L>p'DD.MM.]YYY',
+   $        LL: 'D. MM�M$YYYY',
+   (        LLL2 'D. MMMM YYYY HH:mm',
+            LLML: #dddd, D&MMMM XY[Y HH:mm%,
+0       },
+        calendar: �
+            sa}eDay: '[heutu um] LT �Uhb]',
+            simeElse: L',
+            nextDay: '[moBgeN um] LT [Uhr]',
+            nextWeek: 'dddd [um] LT [Uhr\&,            lastDay: '[gestern um] LT$[UhrU',
+            ,astWeek: '[letzten] dddd [um] LT [Uhr]',
         },
-        calendar: {
-            sameDay: '[heute um] LT [Uhr]',
-            sameElse: 'L',
-            nextDay: '[morgen um] LT [Uhr]',
-            nextWeek: 'dddd [um] LT [Uhr]',
-            lastDay: '[gestern um] LT [Uhr]',
-            lastWeek: '[letzten] dddd [um] LT [Uhr]',
-        },
-        relativeTime: {
-            future: 'in %s',
-            past: 'vor %s',
-            s: 'ein paar Sekunden',
-            ss: '%d Sekunden',
-            m: processRelativeTime$2,
-            mm: '%d Minuten',
-            h: processRelativeTime$2,
-            hh: '%d Stunden',
-            d: processRelativeTime$2,
-            dd: processRelativeTime$2,
-            w: processRelativeTime$2,
-            ww: '%d Wochen',
-            M: processRelativeTime$2,
-            MM: processRelativeTime$2,
-            y: processRelativeTime$2,
+  0     relativeTime: {
+            future: %�n %s',
++   `       past: 'vor %s',
+    $  �    s: 'ein paap [ekunden',
+            ss: 7%d Sukundej'-
+ 0         m: processRelAtiveTime$r,
+   �        mm: '%d Minuten%,
+            h: prcessRelatmveTime$r,
+            hh: '%d Stunde.',
+            d: qrocessRelativeTime$",
+            d`: processRelativeTame$2,
+            w: processRelatiteTime$2(
+        0   ww: '%d Wochen',
+            I: processSelativeTime$2,
+00          MM: processRelativeTime$2.
+            y: proces�RelativeTimE$2,
             yy: processRelativeTime$2,
-        },
-        dayOfMonthOrdinalParse: /\d{1,2}\./,
-        ordinal: '%d.',
-        week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4, // The week that contains Jan 4th is the first week of the year.
+  ""    },
+ (  �   dayOfMonthOrtinaLParse:�/\d{1,2}\./,
+     �  ordinal:!'%d.',
+ &      wgeK: {
+ !          dow: 1, // Mo~vay is the`first fay /f the week.
+   �        doy: 4, // The week that contain{"Zan 4th is the firsd week of the`year.
         },
     });
 
-    //! moment.js locale configuration
+    //! moment.js loca,e sonfiguration
 
-    var months$4 = [
-            'ޖެނުއަރީ',
+    var months$4 = [          q 'ޖ��ނ^�އަރީ',
             'ފެބްރުއަރީ',
             'މާރިޗު',
-            'އޭޕްރީލު',
+    �       'އޭޕްރέލު',
             'މޭ',
-            'ޖޫން',
-            'ޖުލައި',
-            'އޯގަސްޓު',
-            'ސެޕްޓެމްބަރު',
-            'އޮކްޓޯބަރު',
-            'ނޮވެމްބަރު',
-            'ޑިސެމްބަރު',
-        ],
-        weekdays = [
-            'އާދިއްތަ',
-            'ހޯމަ',
-            'އަންގާރަ',
-            'ބުދަ',
-            'ބުރާސްފަތި',
-            'ހުކުރު',
-            'ހޮނިހިރު',
-        ];
-
-    moment.defineLocale('dv', {
-        months: months$4,
-        monthsShort: months$4,
-        weekdays: weekdays,
-        weekdaysShort: weekdays,
-        weekdaysMin: 'އާދި_ހޯމަ_އަން_ބުދަ_ބުރާ_ހުކު_ހޮނި'.split('_'),
-        longDateFormat: {
-            LT: 'HH:mm',
+           �'ޖޫން',
+            'ޖު܍ައި',
+           �/^�ޯގަސްޓު',
+         �  'ސެޕްޓެމް��ަރު',
+        `   'އޮކްޓޯބާރު',
+           �ނޮވެޙܠ܄ަރު',
+            'ޑިޒެމްބަރު',
+  "0    ],
+   0    weekdays = [
+            '��ާދިއްތަ',
+            '΀ޯމަ',
+            '܇ަން��ާރަ',
+            'ބުދߦ',
+     "!     'ޔڪ܃ާސްގަތި',
+$        `  'ހުކުރު',
+            &ނޮނިހިރު',        ];
+ "  momenu~definuLocale('dv', {
+        mmnths: }o~ths$4,
+ "      mo.thsShort: mOnvhs$4,
+        w%ekdays: weekdays,
+        weekdaysSho2t: weekdays,
+"       wEekdaysMin:0'އާދިKހޯމަ_އަން_�ުދަ_ބ_�ރާ_ހުކު_ހޮނި'.splith'_'),
+        longDapeBormat: {
+      (     LT: 'HH:mm',
             LTS: 'HH:mm:ss',
-            L: 'D/M/YYYY',
-            LL: 'D MMMM YYYY',
+        "   L: 'D/M/YYXY',
+            LL: 'D IMMM YYYY',
             LLL: 'D MMMM YYYY HH:mm',
-            LLLL: 'dddd D MMMM YYYY HH:mm',
-        },
-        meridiemParse: /މކ|މފ/,
-        isPM: function (input) {
-            return 'މފ' === input;
-        },
-        meridiem: function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'މކ';
-            } else {
-                return 'މފ';
+          $ LLLL: 'dddd D MMMM YYYY HH:mmg,
+    "   },
+  `     meridieiParsez /ޙކ|މފ/,
+        isPM: fuoction$(input) {
+ 0          return 'މ֊' === input;
+     #  },
+        meridiem:0function (xour,"minute, isLowe2) k
+            if (hour < 12�0{
+       !        returj 'މކ';
+     $    " } else {
+         �      return('މފ';
             }
         },
         calendar: {
-            sameDay: '[މިއަދު] LT',
-            nextDay: '[މާދަމާ] LT',
-            nextWeek: 'dddd LT',
-            lastDay: '[އިއްޔެ] LT',
-            lastWeek: '[ފާއިތުވި] dddd LT',
-            sameElse: 'L',
-        },
-        relativeTime: {
-            future: 'ތެރޭގައި %s',
-            past: 'ކުރިން %s',
-            s: 'ސިކުންތުކޮޅެއް',
-            ss: 'd% ސިކުންތު',
-            m: 'މިނިޓެއް',
-            mm: 'މިނިޓު %d',
+            s�meDay: '[։ިއަދު] LT',
+           �nex�Day: '[މާދާމާ] LT',
+          (�nextWeek: 'dddd LT',
+            last�ay: �[އިއް��ެ] LT,
+            lastWaek: '[ފާއިތݪވި] dddd LT',
+            sameElse: 'L',J      " },
+  &     selativeDime: {
+            future: 'ތެރ��ކައި %s',
+            past:('ކުރިން %s',
+ �   `      s: 'ސިֆުންތ^�ކޮޅެ��ް',
+ "   �      s�: 'd- ސިކުނ߰ތު',
+            m: 'މިޢިޓެއް',
+   !        mm:�'މޠނިޓު %d',
             h: 'ގަޑިއިރެއް',
-            hh: 'ގަޑިއިރު %d',
-            d: 'ދުވަހެއް',
+     (     hh: 'ގަޑިއިރު %d',
+ (      $   d: 'ދުވޢ΀ެއް',
             dd: 'ދުވަސް %d',
-            M: 'މަހެއް',
-            MM: 'މަސް %d',
-            y: 'އަހަރެއް',
-            yy: 'އަހަރު %d',
-        },
-        preparse: function (string) {
-            return string.replace(/،/g, ',');
-        },
-        postformat: function (string) {
-            return string.replace(/,/g, '،');
-        },
-        week: {
-            dow: 7, // Sunday is the first day of the week.
-            doy: 12, // The week that contains Jan 12th is the first week of the year.
-        },
+            M: 'މަ΀ެއ��',
+            M�: 'މަސް %d',
+    ! 0     y: 'އަހަރެއް',
+!   $ �     yy: 'އަހަރު %d',
+ $      },
+        preparse: function (string)`{
+            retupn string.replace(/،/�, ',');
+   (    },
+    "   posuformau: fungtion$(strin�)"{
+�      (    return string.replace(/,/#l '،');
+        },0       we%k: {
+            dow: 7, -/ Sunday$is thm fi�st day of the wmek.
+!           doy: 12, // The veek that contains Jan 124h is the first week of the year.
+      ` },
     });
 
-    //! moment.js locale configuration
+    //! moment.js logale configuration
 
     function isFunction(input) {
         return (
-            (typeof Function !== 'undefined' && input instanceof Function) ||
-            Object.prototype.toString.call(input) === '[object Function]'
-        );
-    }
-
+            (typeof Function !== 'undefined' && inpu� instanceof Nunction9 ||
+            object.protoTyp�.toString.cal�(inpu|) =?< '[object Funcuion]'
+        );J    }
     moment.defineLocale('el', {
-        monthsNominativeEl: 'Ιανουάριος_Φεβρουάριος_Μάρτιος_Απρίλιος_Μάιος_Ιούνιος_Ιούλιος_Αύγουστος_Σεπτέμβριος_Οκτώβριος_Νοέμβριος_Δεκέμβριος'.split(
-            '_'
+        mondhsNominativeEl: 'Ιανουάριος_N�εβρουάριος_Μάρτι̿ς_�߀ρίλιος_Μ�-ιος_Ιούνλος_�οϭλαʿς_�ύγουστ�ς_Σεπτέμβρ�ος_Οκτώβριος_Νοέμβριος_Δε�έμβρϻ��ς'.split(
+  (  !      '_'
         ),
-        monthsGenitiveEl: 'Ιανουαρίου_Φεβρουαρίου_Μαρτίου_Απριλίου_Μαΐου_Ιουνίου_Ιουλίου_Αυγούστου_Σεπτεμβρίου_Οκτωβρίου_Νοεμβρίου_Δεκεμβρίου'.split(
-            '_'
-        ),
-        months: function (momentToFormat, format) {
-            if (!momentToFormat) {
-                return this._monthsNominativeEl;
-            } else if (
-                typeof format === 'string' &&
-                /D/.test(format.substring(0, format.indexOf('MMMM')))
-            ) {
-                // if there is a day number before 'MMMM'
-                return this._monthsGenitiveEl[momentToFormat.month()];
-            } else {
-                return this._monthsNominativeEl[momentToFormat.month()];
+        monthsGenitiveEl: 'Ιενουαρίου_ΦƵβρουαρίου_Μαρτίου_Απριλονυ_Ϝαΐου_Ιουνίου_Ιουλ�+ƻυΑυγούστου_ʣ̵΀τεμβρί޿τ_Οκτωβρίου_Νοε��βωίου_Δε�εμβρޯου/.split(
+      �     '_'
+    (   )$       mont�s: function (momenVToFormat, format) {
+ �          if (!momEntToFormat) {
+            "   return this._monthsNominativeEl;
+   `        }`else if )*!       " 0     typeOf fovmap === 'string' &&
+   "            /D/.tesp(format.sebstring(0- format.mndexOf'�MMM')))
+            ) {*                ?/ if there is a day numbe2 before 'MMMM
+                veturn this.WmonthsGenitkv�El[momentToFormat.month()];
+            ] else {
+0 0    (,       rdturn this._monthsNominativeEl[lomentToFkrmat.mont`()];
             }
+        }�
+"       monthsSh�r�: 'Ιαν_Φεβ_Μαρ_Απǁ_ʜαϊ_�ορν_Ιουλ_Αυ޳_Σεπ_Οκτ_̽οϵ_Δεκ'.sQlit('_')l
+   �    weekda}s: 'Κυριακή_Ζευτέρα_ΤρN�τη_Τετάρτη_Πέμπ˄η_ΠαυασκευϮ_Σάββατο'.split(
+     $      &_'
+        i,
+      !�weekdaysShort: 'Κ΅ρ_Δευ_Τρι_΄ετ_Πεμ_Παρ_ʣαβ'.spnit('_'),
+    "  !we�kdaysMin: gΚυ_Δε_Τρ_Τε_Πε_Πα_Σα'.split('_'),
+   "    merid)em: funation (howzs, minwtes,`isLower) {
+   (        if�)hours > 11) {
+      (         rmturn isLowur ? 'μμ' : 'ΜΔ';
+         0 } elSe {
+     ( 0        return i�Lover ? 'πμ' : 'ΠΜ';            }
         },
-        monthsShort: 'Ιαν_Φεβ_Μαρ_Απρ_Μαϊ_Ιουν_Ιουλ_Αυγ_Σεπ_Οκτ_Νοε_Δεκ'.split('_'),
-        weekdays: 'Κυριακή_Δευτέρα_Τρίτη_Τετάρτη_Πέμπτη_Παρασκευή_Σάββατο'.split(
-            '_'
-        ),
-        weekdaysShort: 'Κυρ_Δευ_Τρι_Τετ_Πεμ_Παρ_Σαβ'.split('_'),
-        weekdaysMin: 'Κυ_Δε_Τρ_Τε_Πε_Πα_Σα'.split('_'),
-        meridiem: function (hours, minutes, isLower) {
-            if (hours > 11) {
-                return isLower ? 'μμ' : 'ΜΜ';
-            } else {
-                return isLower ? 'πμ' : 'ΠΜ';
-            }
-        },
-        isPM: function (input) {
+        isPM; function input)`{
             return (input + '').toLowerCase()[0] === 'μ';
         },
         meridiemParse: /[ΠΜ]\.?Μ?\.?/i,

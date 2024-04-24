@@ -12,7 +12,6 @@ if(isset($_SESSION['saleprice'])){
     $_SESSION['total_price'] = $_SESSION['saleprice'] + 20 ;
 }
 
-$allproducts = $products->fetchAll(PDO::FETCH_OBJ);
 
 
 if(isset($_POST['submit'])) {
@@ -128,13 +127,13 @@ phone_number,order_notes,price,user_id)
                             <hr>
                            
                             <div class="form-group">
-                                    <textarea class="form-control" name="order_notes" placeholder="Order Notes"></textarea>
+                                    <textarea class="form-control" spellcheck="false" cols="30" rows="11" name="order_notes" placeholder="Order Notes"></textarea>
                                 </div>
                             <!-- <div class="form-item mt-1">
                                 <textarea name="text" name="order_notes"  class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Oreder Notes (Optional)"></textarea>
                             </div> -->
                             <div class="row g-4 text-center align-items-center justify-content-center pt-4 mt-2">
-                                <button name="submit" type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">PROCEED TO CHECKOUT</button>
+                                <button name="submit" type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary float-left">PROCEED TO CHECKOUT</button>
                             </div>                                                    
                         </form>
                         </div>
