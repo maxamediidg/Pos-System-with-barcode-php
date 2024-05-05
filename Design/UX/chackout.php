@@ -55,7 +55,7 @@ phone_number,order_notes,price,user_id)
             ":user_id"=> $user_id,
         ]);       
 
-        echo "<script> alert('order has been created');</script>";
+        echo "<script> window.location.href='".APPURL."/payment.php'; </script>";
 
     }
 }
