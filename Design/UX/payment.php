@@ -39,7 +39,7 @@ $insert = $pdo->prepare("insert into payments(username,card_number,expiration_mo
             ":user_id"=> $user_id,
         ]);       
 
-        echo "<script> window.location.href='".APPURL."/products/payment.php'; </script>";
+        echo "<script> window.location.href='".APPURL."/confirm.php'; </script>";
     }
 }
 
