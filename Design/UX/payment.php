@@ -25,6 +25,11 @@ if(isset($_POST['save'])) {
         $cvv = $_POST['cvv'];
         $saleprice = $_SESSION['total_price'];
         $user_id = $_SESSION['user_id'];
+        
+
+if(isset($_SESSION['userid'])) {
+    $user_id = $_SESSION['userid'];
+
 
 $insert = $pdo->prepare("insert into payments(username,card_number,expiration_month,expiration_year,cvv,price,user_id)
         VALUES(:username,:card_number,:expiration_month,:expiration_year,:cvv,:saleprice,:user_id)");
@@ -39,10 +44,10 @@ $insert = $pdo->prepare("insert into payments(username,card_number,expiration_mo
             ":user_id"=> $user_id,
         ]);       
 
-        echo "<script> window.location.href='".APPURL."/confirm.php'; </script>";
+        echo "<script> window.location.href='".APPURL."/success.php'; </script>";
     }
 }
-
+}
 
 
 ?>

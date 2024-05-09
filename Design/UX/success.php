@@ -3,6 +3,16 @@ include_once "headeruser.php";
 include_once "../../ui/connectdb.php";
 ?>
 
+<?php 
+
+if(isset($_POST['user_id'])){
+
+    $delete =$conn->prepare("DELETE FROM cart where user_id= '$_SESSION[userid]'");
+    $delete->execute();
+
+}
+
+?>
 
 <div class="banner">
     <br />

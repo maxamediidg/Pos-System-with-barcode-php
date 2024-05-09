@@ -38,8 +38,8 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="d-flex flex-column text-start footer-item">
                             <h4 class="text-light mb-3">Shop Info</h4>
-                            <a class="btn-link" href="">About Us</a>
-                            <a class="btn-link" href="">Contact Us</a>
+                            <a class="btn-link" href="about.php">About Us</a>
+                            <a class="btn-link" href="contact.php">Contact Us</a>
                             <a class="btn-link" href="">Privacy Policy</a>
                             <a class="btn-link" href="">Terms & Condition</a>
                             <a class="btn-link" href="">Return Policy</a>
@@ -51,7 +51,7 @@
                             <h4 class="text-light mb-3">Account</h4>
                             <a class="btn-link" href="">My Account</a>
                             <a class="btn-link" href="">Shop details</a>
-                            <a class="btn-link" href="">Shopping Cart</a>
+                            <a class="btn-link" href="cart.php">Shopping Cart</a>
                             <a class="btn-link" href="">Wishlist</a>
                             <a class="btn-link" href="">Order History</a>
                             <a class="btn-link" href="">International Orders</a>
@@ -60,9 +60,9 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">Contact</h4>
-                            <p>Address: 1429 Netus Rd, NY 48247</p>
-                            <p>Email: Example@gmail.com</p>
-                            <p>Phone: +0123 4567 8910</p>
+                            <p>Address: 1429 Netus Rd, HR 48247</p>
+                            <p>Email: maxamedeid72@gmail.com</p>
+                            <p>Phone: +252- 4820 946</p>
                             <p>Payment Accepted</p>
                             <img src="img/payment.png" class="img-fluid" alt="">
                         </div>
@@ -99,10 +99,10 @@
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../UX/lib/easing/easing.min.js"></script>
+    <script src="../UX/lib/waypoints/waypoints.min.js"></script>
+    <script src="../UX/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../UX/lib/owlcarousel/owl.carousel.min.js"></script>
 
 
     <!-- Template Javascript -->

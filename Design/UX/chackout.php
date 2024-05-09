@@ -13,7 +13,6 @@ if(isset($_SESSION['saleprice'])){
 }
 
 
-
 if(isset($_POST['submit'])) {
     if(empty($_POST['name']) or empty($_POST['lname'])  or empty($_POST['company_name']) 
     or empty($_POST['address'])  or empty($_POST['city']) or empty($_POST['country']) or empty($_POST['zip_code'])
@@ -35,6 +34,11 @@ if(isset($_POST['submit'])) {
         $order_notes = $_POST['order_notes'];
         $saleprice = $_SESSION['total_price'];
         $user_id = $_SESSION['user_id'];
+
+        
+
+if(isset($_SESSION['userid'])) {
+    $user_id = $_SESSION['userid'];
 
 $insert = $pdo->prepare("insert into orders(name,lname,company_name,address,city,country,zip_code,email,
 phone_number,order_notes,price,user_id)
@@ -59,8 +63,9 @@ phone_number,order_notes,price,user_id)
 
     }
 }
-
+}
 ?>
+
 
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
