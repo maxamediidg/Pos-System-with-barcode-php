@@ -1,4 +1,3 @@
-
 <?php
 include_once "headeruser.php";
 include_once "../../ui/connectdb.php";
@@ -9,6 +8,11 @@ include_once "../../ui/connectdb.php";
 
 <?php
 
+
+
+if (!isset($_SESSION['username'])) {
+    echo "<script> window.location.href='" . APPURL . "'; </script>";
+}
 
 
 if (isset($_POST['submit'])) {
@@ -55,6 +59,8 @@ if (isset($_GET['id'])) {
     $select->execute();
 
     $products = $select->fetch(PDO::FETCH_OBJ);
+}else {
+    echo "<script> window.location.href='" . APPURL . "/404.php'; </script>";
 }
 ?>
 
@@ -64,8 +70,9 @@ if (isset($_GET['id'])) {
         $Validate = $pdo->query("select * from cart where pro_id ='$id' And user_id='$_SESSION[userid]' ");
         $Validate->execute();
     }
- else {
-}
+    
+
+
 
 ?>
 

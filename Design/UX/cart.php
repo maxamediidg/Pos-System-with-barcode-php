@@ -5,18 +5,22 @@ include_once "../../ui/connectdb.php";
 
 <?php
 
+
+
+if (!isset($_SESSION['username'])) {
+    echo "<script> window.location.href='" . APPURL . "'; </script>";
+}
+
 $products = $pdo->query("select * from cart where user_id ='$_SESSION[userid]'");
 $products->execute();
 
 $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $inp_price = $_POST['inp_price'];
 
-    $_SESSION['saleprice'] =$inp_price;
-    echo "<script> window.location.href='".APPURL."/chackout.php'; </script>";
-
-
+    $_SESSION['saleprice'] = $inp_price;
+    echo "<script> window.location.href='" . APPURL . "/chackout.php'; </script>";
 }
 
 ?>
@@ -78,7 +82,7 @@ if(isset($_POST['submit'])){
                                     <?php echo $product->pro_price * $product->pro_qty; ?>
                                 </td>
                                 <td>
-                                    <button  value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger">Delete</button>
+                                    <button value="<?php echo $product->id; ?>" class="btn-delete btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -98,117 +102,118 @@ if(isset($_POST['submit'])){
             <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
                     <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1> 
-                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h3 class="mb-0 ps-4 me-4">Total : </h3>
-                        <h5 class="full_price mb-0 pe-4"></h5>
-                        <form method="post" action="cart.php">
-                        <input class="inp_price form-control" type="hidden" value="" name="inp_price">
-                        <?php if (count($allproducts) > 0) : ?>
-                    </div>
-                    <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                            <h3 class="mb-0 ps-4 me-4">Total : </h3>
+                            <h5 class="full_price mb-0 pe-4"></h5>
+                            <form method="post" action="cart.php">
+                                <input class="inp_price form-control" type="hidden" value="" name="inp_price">
+                                <?php if (count($allproducts) > 0) : ?>
+                        </div>
+                        <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                     <?php endif; ?>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Cart Page End -->
+    <!-- Cart Page End -->
 
 
-<?php include_once 'footeruser.php'; ?>
+    <?php include_once 'footeruser.php'; ?>
 
 
-<script>
-    $(document).ready(function() {
-        $(".form-control").keyup(function() {
-            var value = $(this).val();
-            value = value.replace(/^(0*)/, "");
-            $(this).val(1);
-        });
-
-    })
-
-    $(".pro_qty").mouseup(function() {
-
-        var $el = $(this).closest('tr');
-
-
-
-        var pro_qty = $el.find(".pro_qty").val();
-        var pro_price = $el.find(".pro_price").html();
-
-        var subtotal = pro_qty * pro_price;
-        $el.find(".subtotal_price").html("");
-
-        $el.find(".subtotal_price").append(subtotal +  '$');
-
-        $(".btn-update").on('click', function(e) {
-
-            var id = $(this).val();
-
-
-            $.ajax({
-                type: "POST",
-                url: "update-product.php",
-                data: {
-                    update: "update",
-                    id: id,
-                    pro_qty: pro_qty,
-                    subtotal: subtotal
-                },
-
-                success: function() {
-                    alert("done");
-                    //reload();
-                }
+    <script>
+        $(document).ready(function() {
+            $(".form-control").keyup(function() {
+                var value = $(this).val();
+                value = value.replace(/^(0*)/, "");
+                $(this).val(1);
             });
-                fetch(); 
-        });
 
-        $(".btn-delete").on('click', function(e) {
+        })
 
-            var id = $(this).val();
+        $(".pro_qty").mouseup(function() {
+
+            var $el = $(this).closest('tr');
 
 
-            $.ajax({
-                type: "POST",
-                url: "delete-product.php",
-                data: {
-                    delete: "delete",
-                    id: id,
-                },
 
-                success: function() {
-                    alert("deleted product successfully");
-                    reload();
-                }
-            })
-        });
+            var pro_qty = $el.find(".pro_qty").val();
+            var pro_price = $el.find(".pro_price").html();
 
-        function reload() {
-            $("body").load("cart.php");
-        }
+            var subtotal = pro_qty * pro_price;
+            $el.find(".subtotal_price").html("");
 
-        fetch();
-        function fetch() {
+            $el.find(".subtotal_price").append(subtotal + '$');
 
-            setInterval(function() {
-                var sum = 0.0;
-                $('.subtotal_price').each(function() {
-                    sum += parseFloat($(this).text());
+            $(".btn-update").on('click', function(e) {
+
+                var id = $(this).val();
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "update-product.php",
+                    data: {
+                        update: "update",
+                        id: id,
+                        pro_qty: pro_qty,
+                        subtotal: subtotal
+                    },
+
+                    success: function() {
+                        alert("done");
+                        //reload();
+                    }
                 });
-                $(".full_price").html('Total Price In USD:  '+sum);
-                $(".inp_price").val(sum);
+                fetch();
+            });
+
+            $(".btn-delete").on('click', function(e) {
+
+                var id = $(this).val();
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "delete-product.php",
+                    data: {
+                        delete: "delete",
+                        id: id,
+                    },
+
+                    success: function() {
+                        alert("deleted product successfully");
+                        reload();
+                    }
+                })
+            });
+
+            function reload() {
+                $("body").load("cart.php");
+            }
+
+            fetch();
+
+            function fetch() {
+
+                setInterval(function() {
+                    var sum = 0.0;
+                    $('.subtotal_price').each(function() {
+                        sum += parseFloat($(this).text());
+                    });
+                    $(".full_price").html('Total Price In USD:  ' + sum);
+                    $(".inp_price").val(sum);
 
 
 
-            }, 4000);
-        }
+                }, 4000);
+            }
 
 
 
-          
-    });
-</script>
+
+        });
+    </script>

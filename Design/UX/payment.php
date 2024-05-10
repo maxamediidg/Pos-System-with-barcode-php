@@ -1,9 +1,24 @@
 <?php
+
+if(!isset($_SERVER['HTTP_REFERER'])){
+    //redirect them to the desired location
+    header('location: http://localhost/posbarcode/Design/UX/index.php');
+    exit;
+}
+
+
+?>
+
+<?php
 include_once "headeruser.php";
 include_once "../../ui/connectdb.php";
 ?>
 <?php
 
+
+if (!isset($_SESSION['username'])) {
+    echo "<script> window.location.href='" . APPURL . "'; </script>";
+}
 
 
 $products = $pdo->query("select * from cart where user_id ='$_SESSION[user_id]'");

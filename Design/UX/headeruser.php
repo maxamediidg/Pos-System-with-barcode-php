@@ -74,7 +74,7 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
             </div>
             <div class="container px-0">
                 <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                    <a href="index.php" class="navbar-brand"><h1 class="text-primary display-6">Fruitables</h1></a>
+                    <a href="index.php" class="navbar-brand"><h1 class="text-primary display-6"><!--Fruitables-->STAR-MALL</h1></a>
                     <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars text-primary"></span>
                     </button>
@@ -88,9 +88,9 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Transaction</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <!-- <a href="cart.php" class="dropdown-item">Cart</a> -->
-                                    <a href="chackout.php" class="dropdown-item">Chackout</a>
-                                    <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                                    <a href="404.html" class="dropdown-item">404 Page</a>
+                                    <a href="<?php echo APPURL; ?>/transaction.php?id=<?php echo $_SESSION['userid']; ?>" class="dropdown-item">Transaction History</a> 
+                                    <a href="settings.php?id=<?php echo $_SESSION['userid'] ; ?>"  class="dropdown-item">Settings</a>
+                                    <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
                                 </div>
                             </div>             
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
@@ -105,8 +105,9 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                             <a href="#" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
-                        </div>
+                        </div>  
                     </div>
+                    <i class="bi bi-box-arrow-right px-3" style="font-size: 20px;"> <a href="../../ui/logout.php">logout</a></i>
                 </nav>
             </div>
         </div>
