@@ -12,6 +12,8 @@ if(isset($_POST['btnsave'])){
   $name= $_POST['name'];
   $email= $_POST['email'];
   $phone= $_POST['phone'];
+  $address= $_POST['address'];
+
 
   
 
@@ -56,12 +58,13 @@ $photo = $f_newfile;
 
 
 
-$insert=$pdo->prepare("insert into tbl_employee(name, email,phone, photo,joining_date)
-values(:name,:email,:phone,:photo,:join)");
+$insert=$pdo->prepare("insert into tbl_employee(name, email,phone,address,photo,joining_date)
+values(:name,:email,:phone,:address,:photo,:join)");
 
 $insert->bindParam(':name', $name);
 $insert->bindParam(':email',$email);
 $insert->bindParam(':phone',$phone);
+$insert->bindParam(':address',$address);
 $insert->bindParam(':photo',$photo);
 $insert->bindParam(':join', $date);
 
@@ -144,9 +147,9 @@ $_SESSION['status_code']="warning";
 
 <div class="row">
   
-  <div class="col-lg-12">
+  <div class="col-lg-8">
   <h3 class="text-center text-info">Add Record</h3>
- <form action="" method="post" enctype="multipart/form-data">
+ <form action="employee.php" method="post" enctype="multipart/form-data">
 
 
  <div class="form-group">
@@ -163,7 +166,11 @@ $_SESSION['status_code']="warning";
  </div>
 
  <div class="form-group">
-    <input type="tel" name="phone" class="form-control" placeholder="enter phone" required>
+    <input type="text" name="phone" class="form-control" placeholder="enter phone" required>
+ </div>
+
+ <div class="form-group">
+    <input type="text" name="address" class="form-control" placeholder="enter address" required>
  </div>
 
   <div class="form-froup">
@@ -193,6 +200,7 @@ $_SESSION['status_code']="warning";
         <th>Name</th>
         <th>email</th>
         <th>phone</th>
+        <th>address</th>
         <th>Date of Admission</th>
         <th>Actions</th>
       </tr>
@@ -211,6 +219,7 @@ $_SESSION['status_code']="warning";
 <td> ' . $row->name . '</td>
 <td> ' . $row->email . '</td>
 <td> ' . $row->phone . '</td>
+<td> ' . $row->address . '</td>
 <td> ' . $row->joining_date . '</td>
 
 
