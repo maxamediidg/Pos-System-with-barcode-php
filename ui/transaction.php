@@ -1,27 +1,33 @@
 <?php
-include_once "headeruser.php";
-include_once "../../ui/connectdb.php";
 
-if (!isset($_SESSION['username'])) {
-  echo "<script> window.location.href='" . APPURL . "'; </script>";
-}else {
-  echo "<script> window.location.href='" . APPURL . "/404.php'; </script>";
-  exit;
-}
+include_once'connectdb.php';
+session_start();
+
+
+include_once "header.php";
+
 ?>
 
 
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Admin Dashboard</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-<div class="col-lg-12 grid-margin stretch-card">
+<hr />
+
+            <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
       <h4 class="card-title">Transaction  With Payments</h4>
       <p class="card-description"> Add class <code>.table-striped</code>
       </p>
@@ -38,6 +44,7 @@ if (!isset($_SESSION['username'])) {
           </thead>
           <tbody>
             <?php
+
             $select = $pdo->prepare("select * from payments order by id ASC");
             $select->execute();
 
@@ -73,15 +80,15 @@ if (!isset($_SESSION['username'])) {
           <thead>
           <tr class="table-danger">
               <th> # ID </th>
-              <th> First name </th>
-              <th> last Name </th>
-              <th> email </th>
-              <th> country </th>
-              <th> city </th>
-              <th> address </th>
-              <th> phone_number </th>
-              <th> price  </th>
-              <th> Date Created at </th>
+              <th>name </th>
+              <th>l.Name </th>
+              <th>email </th>
+              <th>country </th>
+              <th>city </th>
+              <th>address </th>
+              <th>phone_number </th>
+              <th>price  </th>
+              <th>Date Created at </th>
 
             </tr>
           </thead>
@@ -119,15 +126,24 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 </div>
 </div>
 
-<?php include_once "footeruser.php"; ?>
 
-<!-- <footer class="footer">
-        <div class="container-fluid clearfix">
-          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-            <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-            <i class="mdi mdi-heart text-danger"></i>
-          </span>
+
+            </div>
+
+
+          </div>
+          <!-- /.col-md-6 -->
         </div>
-      </footer>
-    </div> -->
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <?php
+
+include_once("footer.php");
+
+?>

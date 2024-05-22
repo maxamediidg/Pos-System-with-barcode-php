@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
         ':pro_image' => $pro_image,
         ':pro_price' => $pro_price,
         ':pro_qty' => $pro_qty,
-        ':pro_subtotal'=>$pro_subtotal,
+        ':pro_subtotal' => $pro_subtotal,
         ':user_id' => $user_id,
 
     ]);
@@ -47,8 +47,17 @@ if (isset($_POST['submit'])) {
 $categories = $pdo->query("SELECT * FROM tbl_category");
 $categories->execute();
 $allcategories = $categories->fetchAll(PDO::FETCH_OBJ);
-?>
 
+//products 
+if (isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+
+    $products = $pdo->query("SELECT * FROM tbl_product where pid != $id  order by rand() limit 4");
+    $products->execute();
+    $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
+}
+?>
 
 <?php
 
@@ -59,18 +68,18 @@ if (isset($_GET['id'])) {
     $select->execute();
 
     $products = $select->fetch(PDO::FETCH_OBJ);
-}else {
+} else {
     echo "<script> window.location.href='" . APPURL . "/404.php'; </script>";
 }
 ?>
 
-<?php 
-    //validate cart products
-    if (isset($_SESSION['userid'])) {
-        $Validate = $pdo->query("select * from cart where pro_id ='$id' And user_id='$_SESSION[userid]' ");
-        $Validate->execute();
-    }
-    
+<?php
+//validate cart products
+if (isset($_SESSION['userid'])) {
+    $Validate = $pdo->query("select * from cart where pro_id ='$id' And user_id='$_SESSION[userid]' ");
+    $Validate->execute();
+}
+
 
 
 
@@ -129,10 +138,10 @@ if (isset($_GET['id'])) {
                         <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
                         <p class="mb-1">
                             <strong>Quantity</strong>
-                              <form method="POST" id="form-data">
-                              <div class="col-sm-5">
+                        <form method="POST" id="form-data">
+                            <div class="col-sm-5">
                                 <input class="form-control" type="hidden" name="pro_title" value="<?php echo $products->product; ?>">
-                            </div>       
+                            </div>
                             <div class="col-sm-5">
                                 <input class="form-control" type="hidden" name="pro_image" value="<?php echo $products->image; ?>">
                             </div>
@@ -144,9 +153,9 @@ if (isset($_GET['id'])) {
                             </div>
                             <div class="col-sm-5">
                                 <input class="form-control" type="hidden" name="pro_id" value="<?php echo $products->pid; ?>">
-                            </div>                            
-                        </p>
-                        <!-- <div class="input-group quantity mb-5" style="width: 100px;">
+                            </div>
+                            </p>
+                            <!-- <div class="input-group quantity mb-5" style="width: 100px;">
                             <div class="input-group-btn">
                                 <button class="btn-insert btn btn-sm btn-minus rounded-circle bg-light border">
                                     <i class="fa fa-minus" value="<?php echo $products->saleprice; ?>" name="pro_qty"></i>
@@ -159,36 +168,36 @@ if (isset($_GET['id'])) {
                                 </button>
                             </div>
                         </div>  -->
-                        
+
                             <div class="col-sm-5">
                                 <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->quantity; ?>" name="pro_qty">
                             </div>
                             <div class="row">
-                            <div class="col-sm-5">
-                                <input class="subtotal_price form-control" type="hidden" name="pro_subtotal" value="<?php echo $products->saleprice * $products->quantity; ?>">
+                                <div class="col-sm-5">
+                                    <input class="subtotal_price form-control" type="hidden" name="pro_subtotal" value="<?php echo $products->saleprice * $products->quantity; ?>">
+                                </div>
                             </div>
-                        </div>
-                        <?php if (isset($_SESSION['username'])) : ?>
-                            <?php if ($Validate->rowCount() > 0) : ?>
+                            <?php if (isset($_SESSION['username'])) : ?>
+                                <?php if ($Validate->rowCount() > 0) : ?>
 
-                                <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg" disabled>
-                                    <i class="fa fa-shopping-basket"></i> Added to Cart
-                                </button>
+                                    <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg" disabled>
+                                        <i class="fa fa-shopping-basket"></i> Added to Cart
+                                    </button>
+                                <?php else : ?>
+
+                                    <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg">
+                                        <i class="fa fa-shopping-basket"></i> Add to Cart
+                                    </button> <?php endif; ?>
                             <?php else : ?>
+                                <div class="mt-5 alert alert-success bg-success text-white text-center">
+                                    log in to buy this product or add it to cart
+                                </div>
+                            <?php endif; ?>
 
-                        <button name="submit" type="submit" class="btn-insert mt-3 btn btn-primary btn-lg">
-                                    <i class="fa fa-shopping-basket"></i> Add to Cart
-                                </button> <?php endif; ?>
-                        <?php else : ?>
-                            <div class="mt-5 alert alert-success bg-success text-white text-center">
-                                log in to buy this product or add it to cart 
-                            </div>
-                        <?php endif; ?>
 
-     
-                        <!-- <a href="shop-detail.php?id=<?php echo $products->pid; ?>"  class=" btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i  class="fa fa-shopping-bag me-2 text-primary"  class=""></i> Add to cart</a> -->
+                            <!-- <a href="shop-detail.php?id=<?php echo $products->pid; ?>"  class=" btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i  class="fa fa-shopping-bag me-2 text-primary"  class=""></i> Add to cart</a> -->
                     </div>
-                                                </form>
+                    </form>
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
@@ -489,118 +498,22 @@ if (isset($_GET['id'])) {
         <h1 class="fw-bold mb-0">Related products</h1>
         <div class="vesitable">
             <div class="owl-carousel vegetable-carousel justify-content-center">
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                <?php foreach ($allproducts as $products) : ?>
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img">
+                            <img src="../../ui/productimages/<?php echo $products->image; ?>" class="img-fluid w-100 rounded-top" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;"><?php echo $products->stock; ?></div>
+                        <div class="p-4 pb-0 rounded-bottom">
+                            <h4><?php echo $products->product; ?></h4>
+                            <p><?php echo $products->description; ?></p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="text-dark fs-5 fw-bold">$<?php echo $products->saleprice; ?> in USD</p>
+                                <a href="shop-detail.php?id=<?php echo $products->pid; ?>" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Banana</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Bell Papper</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Potatoes</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Potatoes</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 pb-0 rounded-bottom">
-                        <h4>Parsely</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
             </div>
         </div>
     </div>
@@ -610,43 +523,42 @@ if (isset($_GET['id'])) {
 <?php include_once "footeruser.php"; ?>
 
 <script>
-    
-     $(".btn-insert").on("click", function(e) {
-            e.preventDefault();
+    $(".btn-insert").on("click", function(e) {
+        e.preventDefault();
 
-            var form_data = $("#form-data").serialize() + '&submit=submit';
+        var form_data = $("#form-data").serialize() + '&submit=submit';
 
-            $.ajax({
-                url: "shop-detail.php?id=<?php echo $id; ?>",
-                method: "post",
-                data: form_data,
-                success: function() {
-                    alert("Product added to cart successfully");
-                    (".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
-                    WithRef();
-                }
-            });
+        $.ajax({
+            url: "shop-detail.php?id=<?php echo $id; ?>",
+            method: "post",
+            data: form_data,
+            success: function() {
+                alert("Product added to cart successfully");
+                (".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
+                WithRef();
+            }
+        });
 
-            function WithRef() {
+        function WithRef() {
             $("body").load("shop-detail.php?id=<?php echo $id; ?>");
         }
 
-            $(".pro_qty").mouseup(function () {
-                  
-                 
+        $(".pro_qty").mouseup(function() {
 
-                  var $el = $(this).closest('form');
-  
-  
-                    var pro_qty = $el.find(".pro_qty").val();
-                    var pro_price = $el.find(".pro_price").val();
-                      
-                    var subtotal = pro_qty * pro_price;
-                    //alert(subtotal);
-                    $el.find(".subtotal_price").val("");        
-  
-                    $el.find(".subtotal_price").val(subtotal);
-              });
-  
+
+
+            var $el = $(this).closest('form');
+
+
+            var pro_qty = $el.find(".pro_qty").val();
+            var pro_price = $el.find(".pro_price").val();
+
+            var subtotal = pro_qty * pro_price;
+            //alert(subtotal);
+            $el.find(".subtotal_price").val("");
+
+            $el.find(".subtotal_price").val(subtotal);
         });
+
+    });
 </script>

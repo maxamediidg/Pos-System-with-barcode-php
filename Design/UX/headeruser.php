@@ -90,6 +90,7 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                                     <!-- <a href="cart.php" class="dropdown-item">Cart</a> -->
                                     <a href="<?php echo APPURL; ?>/transaction.php?id=<?php echo $_SESSION['userid']; ?>" class="dropdown-item">Transaction History</a> 
                                     <a href="settings.php?id=<?php echo $_SESSION['userid'] ; ?>"  class="dropdown-item">Settings</a>
+                                    <a href="testimonial.php"  class="dropdown-item">Client</a>
                                     <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
                                 </div>
                             </div>             
@@ -102,7 +103,7 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                                 <i class="fa fa-shopping-bag fa-2x"></i>
                                 <span  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;"><?php echo $num->num_products; ?></span></a>
                             </a>
-                            <a href="#" class="my-auto">
+                            <a href="../UX/settings.php" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
                             </a>
                         </div>  

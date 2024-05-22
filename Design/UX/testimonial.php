@@ -97,9 +97,131 @@
                             </div>
                         </div>
                     </div>
+                </div>    
+
+<br /><br />
+
+
+                <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>feedback</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Enter what are your saying <strong>star-mall</strong>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="quickForm">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter your fullname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">description</label>
+                    <textarea class="form-control" spellcheck="false"  name="description" placeholder="please enter what are you saying"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Professional</label>
+                    <input type="text" name="pro" class="form-control" id="exampleInputEmail1" placeholder="Enter your professional like teacher,cutsomer...">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">image</label>
+                    <input type="file" name="file" class="form-control" id="exampleInputEmail1" placeholder="Enter image you own">
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
+                    </div>
+                  </div>
                 </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>         
             </div>
         </div>
+        
         <!-- Tastimonial End -->
 
  <?php include_once "footeruser.php"; ?>
+
+ <script>
+$(function () {
+  $.validator.setDefaults({
+    submitHandler: function () {
+      alert( "Form successful submitted!" );
+    }
+  });
+  $('#quickForm').validate({
+    rules: {
+        name: {
+        required: true,
+        name: true,
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+      terms: {
+        required: true
+      },
+    },
+    messages: {
+      email: {
+        required: "Please enter a email address",
+        email: "Please enter a valid email address"
+      },
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      terms: "Please accept our terms"
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
