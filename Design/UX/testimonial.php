@@ -1,4 +1,56 @@
-<?php include_once "headeruser.php"; ?>
+<?php 
+include_once "headeruser.php"; 
+include_once "../../ui/connectdb.php";
+?>
+
+<?php 
+if(isset($_POST['submit'])){
+
+  $name = $_POST['name'];
+  $description = $_POST['description'];
+  $pro = $_POST['pro'];
+  
+  $f_name = $_FILES['image']['name'];
+  $f_tmp = $_FILES['image']['tmp_name'];
+  
+  $f_size = $_FILES['image']['size'];
+  
+  $f_extension = explode('.', $f_name);
+  $f_extension = strtolower(end($f_extension));
+  
+  $f_newfile = uniqid().'.'.$f_extension;
+  
+  $store = "Feedback/".$f_newfile;
+  
+  if($f_extension == 'jpg' || $f_extension == 'jpeg' || $f_extension == 'png' || $f_extension == 'gif'){
+  
+    if($f_size >= 1000000){
+      echo "<script>alert('Max file size should be 1MB');</script>";
+    } else {
+      if(move_uploaded_file($f_tmp, $store)){
+        $image = $f_newfile;
+        
+        $insert = $pdo->prepare("INSERT INTO tbl_client (fullname, description, role, image) VALUES (:name, :description, :role, :image)");
+        
+        $insert->bindParam(':name', $name);
+        $insert->bindParam(':description', $description);
+        $insert->bindParam(':role', $pro);
+        $insert->bindParam(':image', $image);
+        
+        if($insert->execute()){
+          echo "<script>alert('Employee inserted successfully');</script>";
+        } else {
+          echo "<script>alert('Error inserting employee');</script>";
+        }
+      } else {
+        echo "<script>alert('Error uploading file');</script>";
+      }
+    }
+  } else {
+    echo "<script>alert('Only jpg, jpeg, png, and gif files can be uploaded');</script>";
+  }
+}
+?>
 
 
 
@@ -127,7 +179,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm">
+              <form id="" action="testimonial.php" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
@@ -143,7 +195,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">image</label>
-                    <input type="file" name="file" class="form-control" id="exampleInputEmail1" placeholder="Enter image you own">
+                    <input type="file" name="image" class="form-control" id="exampleInputEmail1" placeholder="Enter image you own" class="custom-file">
                   </div>
                   <div class="form-group mb-0">
                     <div class="custom-control custom-checkbox">
@@ -154,7 +206,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </div>
@@ -178,7 +230,7 @@
         <!-- Tastimonial End -->
 
  <?php include_once "footeruser.php"; ?>
-
+<!-- 
  <script>
 $(function () {
   $.validator.setDefaults({
@@ -224,4 +276,4 @@ $(function () {
     }
   });
 });
-</script>
+</script> -->

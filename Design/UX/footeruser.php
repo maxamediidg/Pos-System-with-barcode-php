@@ -49,18 +49,18 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="d-flex flex-column text-start footer-item">
                             <h4 class="text-light mb-3">Account</h4>
-                            <a class="btn-link" href="">My Account</a>
+                            <a class="btn-link" href="settings.php">My Account</a>
                             <a class="btn-link" href="">Shop details</a>
                             <a class="btn-link" href="cart.php">Shopping Cart</a>
                             <a class="btn-link" href="">Wishlist</a>
-                            <a class="btn-link" href="">Order History</a>
+                            <a class="btn-link" href="transaction.php">Order History</a>
                             <a class="btn-link" href="">International Orders</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-item">
                             <h4 class="text-light mb-3">Contact</h4>
-                            <p>Address: 1429 Netus Rd, HR 48247</p>
+                            <p>Address: 1429 Star-company Rd, HR 48247</p>
                             <p>Email: maxamedeid72@gmail.com</p>
                             <p>Phone: +252- 4820 946</p>
                             <p>Payment Accepted</p>

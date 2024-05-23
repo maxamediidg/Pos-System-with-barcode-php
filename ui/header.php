@@ -333,7 +333,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="add-expense.php" class="nav-link">
             <i class='fas fa-donate' style='font-size:23px;color:darkwhite'></i>
               <p>
@@ -341,7 +341,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               </p>
             </a>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -384,7 +384,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
             <i class='fas fa-coins' style='font-size:20px;color:red'></i>
             <span class="right badge badge-success">💵</span>
@@ -400,7 +400,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Day-expenses</p>
                 </a>
               </li>
-            </ul>
+            </ul> -->
 
 
 
@@ -433,7 +433,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
           <li class="nav-item">
             <a href="transaction.php" class="nav-link">
-              <i class="nav-icon fas fa-square"></i>
+            <i class='fas fa-coins' style='font-size:20px;color:red'></i>
               <p>
              Transaction 
 

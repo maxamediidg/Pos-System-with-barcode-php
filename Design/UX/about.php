@@ -34,7 +34,12 @@ include_once "../../ui/connectdb.php";
                     </div>
                     <div class="col-md-10">
                         <p class="text-justify">
-                            Occaecat sunt id anim officia laborum incididunt dolore sit consequat consectetur enim fugiat aute culpa consequat cillum incididunt officia sed esse laborum anim aliqua et duis reprehenderit commodo do dolor dolor deserunt esse in aute anim adipisicing deserunt eu tempor veniam magna magna nulla in ea nulla elit est do veniam dolor pariatur in ut deserunt adipisicing est anim proident occaecat aliquip sunt enim occaecat cillum commodo in duis fugiat pariatur officia aliquip anim in dolore id id pariatur pariatur enim quis excepteur proident incididunt dolor consequat nisi et veniam occaecat sed exercitation dolore eiusmod elit sed voluptate adipisicing ut irure ad ut ex deserunt exercitation amet in eu quis ut occaecat non sunt labore reprehenderit elit commodo aute ea occaecat tempor dolor sed ut cillum aute et pariatur sit consequat commodo sunt sit amet nulla commodo aute laborum non ullamco ea laboris do adipisicing quis consequat adipisicing ea cupidatat et minim pariatur sed amet cillum commodo pariatur fugiat duis id amet ut exercitation voluptate culpa fugiat nostrud aute.
+                        The STAR-MALL POS System in Hargeisa, Somaliland, represents a significant advancement in the retail and service industries of the region. As the capital and largest city of Somaliland, Hargeisa is a bustling economic hub where efficient, reliable, and secure transaction processing is crucial for business operations. STAR-MALL's POS system is designed to meet these needs by providing a comprehensive solution for managing sales, inventory, and customer data.
+                        This POS system is tailored to address the unique challenges and opportunities within the Somaliland market. It integrates modern technology to streamline the checkout process, enhance customer service, and improve overall business efficiency. By implementing robust data security measures, STAR-MALL ensures that customer and transaction data are protected, fostering trust and compliance with international data protection standards.
+                        Moreover, the system supports various payment methods, including cash, credit cards, and mobile payments, accommodating the diverse preferences of Hargeisa's shoppers. It also offers features such as real-time sales tracking, inventory management, and analytics, empowering businesses to make informed decisions and optimize their operations.
+
+
+
                         </p>
                     </div>
                 </div>

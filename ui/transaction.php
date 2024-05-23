@@ -28,8 +28,8 @@ include_once "header.php";
             <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Transaction  With Payments</h4>
-      <p class="card-description"> Add class <code>.table-striped</code>
+      <h2>Transaction  With Payments</h2>
+      <p class="card-description"> Star-mall <code>by Online 💵💴</code>
       </p>
       <div class="table-responsive">
         <table class="table table-striped">
@@ -52,7 +52,7 @@ include_once "header.php";
               echo '
 <tr>
 <td> ' . $row->id . '</td>
-<td> ' . $row->username . '</td>
+<td> ' . $row->username . '</td> 
 <td> ' . $row->card_number . '</td>
 <td> ' . $row->price . '</td>
 <td> ' . $row->timestamp . '</td>
@@ -72,8 +72,8 @@ include_once "header.php";
 <div class="col-lg-12 stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Transaction  With Orders</h4>
-      <p class="card-description"> Add class <code>.table-{color}</code>
+      <h2 >Transaction  With Orders</h2>
+      <p class="card-description"> Star-mall <code>by Online 💴💵</code>
       </p>
       <div class="table-responsive">
         <table class="table table-bordered table-contextual">

@@ -161,7 +161,7 @@ $num_categories = $row_categories['num_categories'];
                                 <div class="position-relative">
                                     <img src="img/logo-color.png" class="img-fluid w-100 rounded" alt="">
                                     <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                        <h3 class="text-secondary fw-bold"><br> ❤️❤️ <br></h3>
+                                        <h3 class="text-secondary fw-bold"><br> 🚀 <br></h3>
                                     </div>
                                 </div>
                             </div>
