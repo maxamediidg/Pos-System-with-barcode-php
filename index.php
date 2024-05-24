@@ -63,7 +63,7 @@ $_SESSION['role'] = $row['role'];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POS BARCODE | Log in </title>
+  <title>Star-Mall Pos | Log in </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -83,7 +83,7 @@ $_SESSION['role'] = $row['role'];
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>POS</b>BARCODE</a>
+      <a href="../../index2.html" class="h1"><b>STAR-Mall</b>POS</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>

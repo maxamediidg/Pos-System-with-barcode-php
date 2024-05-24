@@ -32,7 +32,7 @@ include_once "header.php";
       <p class="card-description"> Star-mall <code>by Online 💵💴</code>
       </p>
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="table_payments" class="table table-striped table-hover">
           <thead class="bg-primary text-white">
             <tr>
               <th> # </th>
@@ -62,6 +62,16 @@ include_once "header.php";
 
             ?>
           </tbody>
+          <tfoot class="table-info">
+                    <tr>
+                      <td>ID</td>
+                      <td>Username</td>
+                      <td>card_number</td>
+                      <td>price</td>
+                      <td>Date of Admission</td>
+                    </tr>
+
+                  </tfoot>
         </table>
       </div>
     </div>
@@ -76,19 +86,19 @@ include_once "header.php";
       <p class="card-description"> Star-mall <code>by Online 💴💵</code>
       </p>
       <div class="table-responsive">
-        <table class="table table-bordered table-contextual">
-          <thead>
-          <tr class="table-danger">
-              <th> # ID </th>
-              <th>name </th>
-              <th>l.Name </th>
-              <th>email </th>
-              <th>country </th>
-              <th>city </th>
-              <th>address </th>
-              <th>phone_number </th>
+        <table  id="table_order" class="table table-bordered table-contextual table-hover">
+          <thead class="bg-info text-dark">
+          <tr>
+              <th> #ID</th>
+              <th>name</th>
+              <th>l.Name</th>
+              <th>email</th>
+              <th>country</th>
+              <th>city</th>
+              <th>address</th>
+              <th>phone_number</th>
               <th>price  </th>
-              <th>Date Created at </th>
+              <th>Date_Modify</th>
 
             </tr>
           </thead>
@@ -118,6 +128,21 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 ?>
 
           </tbody>
+          <tfoot class="table-info">
+                    <tr>
+                      <td>ID</td>
+                      <td>name</td>
+                      <td>l.name</td>
+                      <td>email</td>
+                      <td>country</td>
+                      <td>city</td>
+                      <td>address</td>
+                      <td>phone_number</td>
+                      <td>price</td>
+                      <td>Date of Admission</td>
+                    </tr>
+
+                  </tfoot>
         </table>
       </div>
     </div>
@@ -147,3 +172,16 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 include_once("footer.php");
 
 ?>
+
+<script>
+    $(document).ready(function() {
+        $('#table_payments').DataTable();
+    });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#table_order').DataTable();
+    });
+</script>

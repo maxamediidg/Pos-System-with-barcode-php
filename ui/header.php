@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POS | BARCODE  SYSTEMS</title>
+  <title>Star | Mall  SYSTEMS</title>
 
   
   <!-- Google Font: Source Sans Pro -->
@@ -442,6 +442,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
 
+          <li class="nav-item">
+            <a href="feedback.php" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+             Feedback
+
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="changepassword.php" class="nav-link">
               <i class="nav-icon fas fa-lock"></i>

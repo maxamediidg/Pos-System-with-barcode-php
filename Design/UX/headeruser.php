@@ -43,7 +43,7 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
         <link href="../UX/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="../UX/css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
         
     </head>
 
