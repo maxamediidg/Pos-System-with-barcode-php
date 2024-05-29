@@ -17,9 +17,9 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    
-    if ($id !== $_SESSION['userid']) {
+    if ($id != $_SESSION['userid']) { 
         echo "<script> window.location.href='" . APPURL . "'; </script>";
+        exit; 
     }
 
     $select = $pdo->query("select * from orders where user_id='$id'");

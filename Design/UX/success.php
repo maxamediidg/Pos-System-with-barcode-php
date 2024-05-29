@@ -1,35 +1,31 @@
 <?php
+session_start(); // Ensure the session is started
 
-if(!isset($_SERVER['HTTP_REFERER'])){
-    //redirect them to the desired location
-    header('location: http://localhost/posbarcode/Design/UX/index.php');
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    // Redirect to the desired location if HTTP_REFERER is not set
+    header('Location: http://localhost/posbarcode/Design/UX/index.php');
     exit;
 }
 
-
-?>
-
-
-<?php
 include_once "headeruser.php";
 include_once "../../ui/connectdb.php";
-?>
 
-<?php 
-
-
+// Check if the user is logged in
 if (!isset($_SESSION['username'])) {
     echo "<script> window.location.href='" . APPURL . "'; </script>";
+    exit;
 }
 
-
-if(isset($_POST['userid'])){
-
-    $delete =$pdo->prepare("DELETE from cart where user_id ='$_SESSION[userid]'");
+// Check if user ID is set in the session
+if (isset($_SESSION['userid'])) {
+    // Prepare and execute the delete statement
+    $delete = $pdo->prepare("DELETE FROM cart WHERE user_id = :userid");
+    $delete->bindParam(':userid', $_SESSION['userid']);
     $delete->execute();
-
+} else {
+    echo "<script> window.location.href='" . APPURL . "'; </script>";
+    exit;
 }
-
 ?>
 
 <div class="banner">
@@ -48,9 +44,7 @@ if(isset($_POST['userid'])){
             <p class="lead text-uppercase" style="color: white;">
                 Save time and leave the groceries to us.
             </p>
-            <a href="<?php echo APPURL; ?>" class="btn btn-primary text-uppercase">home</a>
-
-
+            <a href="<?php echo APPURL; ?>" class="btn btn-primary text-uppercase">Home</a>
         </div>
     </div>
 </div>

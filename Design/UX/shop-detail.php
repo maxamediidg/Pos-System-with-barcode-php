@@ -135,7 +135,7 @@ if (isset($_SESSION['userid'])) {
                             <i class="fa fa-star"></i>
                         </div>
                         <p class="mb-4"> <?php echo $products->description; ?> .</p>
-                        <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
+                        <p class="mb-4">Look open eyes</p>
                         <p class="mb-1">
                             <strong>Quantity</strong>
                         <form method="POST" id="form-data">
@@ -355,7 +355,7 @@ if (isset($_SESSION['userid'])) {
                                     <li>
                                         <div class="d-flex justify-content-between fruite-name">
                                             <a href="#"><i class="fas fa-apple-alt me-2"></i><?php echo $category->category; ?></a>
-                                            <span>(3)</span>
+                                            <span></span>
                                         </div>
                                     </li>
                                 </ul>

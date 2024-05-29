@@ -722,7 +722,8 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
             </div>
         </div>
         <!-- Tastimonial End -->
+<?php include "footeruser.php" ?>
 
- <?php include "footeruser.php" ?>
+
 
         

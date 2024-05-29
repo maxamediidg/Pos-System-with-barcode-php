@@ -9,13 +9,13 @@ if (!isset($_SESSION['username'])) {
 ?>
 
 <?php
-
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-
-    if ($id !== $_SESSION['userid']) {
+    // Check if the ID matches the logged-in user's ID
+    if ($id != $_SESSION['userid']) { // Use loose comparison
         echo "<script> window.location.href='" . APPURL . "'; </script>";
+        exit; 
     }
 
     $select = $pdo->query("select * from tbl_user where userid='$id'");
