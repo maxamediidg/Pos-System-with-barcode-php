@@ -54,7 +54,6 @@ $_SESSION['role'] = $row['role'];
 }
 
 
-
 ?>
 
 

@@ -55,7 +55,7 @@ $num_categories = $row_categories['num_categories'];
 <div class="container-fluid page-header py-5">
     <h1 class="text-center text-white display-6">Shop</h1>
     <ol class="breadcrumb justify-content-center mb-0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
         <li class="breadcrumb-item"><a href="#">Pages</a></li>
         <li class="breadcrumb-item active text-white">Shop</li>
     </ol>
@@ -66,7 +66,7 @@ $num_categories = $row_categories['num_categories'];
 <!-- Fruits Shop Start-->
 <div class="container-fluid fruite py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Fresh fruits shop</h1>
+        <h1 class="mb-4">Flash Sales</h1>
         <div class="row g-4">
             <div class="col-lg-12">
                 <div class="row g-4">

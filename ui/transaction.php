@@ -91,7 +91,7 @@ include_once "header.php";
           <tr>
               <th> #ID</th>
               <th>name</th>
-              <th>l.Name</th>
+              <th>l.name</th>
               <th>email</th>
               <th>country</th>
               <th>city</th>
@@ -99,6 +99,7 @@ include_once "header.php";
               <th>phone_number</th>
               <th>price  </th>
               <th>Date_Modify</th>
+              <th>Action</th>
 
             </tr>
           </thead>
@@ -121,7 +122,10 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 <td> ' . $row->phone_number . '</td>
 <td> ' . $row->price . '</td>
 <td> ' . $row->created_at . '</td>
-
+<td>
+  <a href="employeeDetails.php?id='.$row->id.'" class="btn btn-warning mx-2">
+ <i class="bi-bi-pencil-square"></i>Update</a>
+</td>
 </tr>';
 }
 
@@ -140,6 +144,8 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
                       <td>phone_number</td>
                       <td>price</td>
                       <td>Date of Admission</td>
+                      <td>Actions</td>
+
                     </tr>
 
                   </tfoot>

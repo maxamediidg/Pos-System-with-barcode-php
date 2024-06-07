@@ -66,9 +66,8 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                         <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">maxamedeid72@gmail.com</a></small>
                     </div>
                     <div class="top-link pe-2">
-                        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
-                        <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
-                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                        <a href="policy.php" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                        <a href="terms.php" class="text-white"><small class="text-white mx-2">Terms of Use</small></a>
                     </div>
                 </div>
             </div>
@@ -90,12 +89,13 @@ $num =$cart->fetch(PDO::FETCH_OBJ);
                                     <!-- <a href="cart.php" class="dropdown-item">Cart</a> -->
                                     <a href="<?php echo APPURL; ?>/transaction.php?id=<?php echo $_SESSION['userid']; ?>" class="dropdown-item">Transaction History</a> 
                                     <a href="settings.php?id=<?php echo $_SESSION['userid'] ; ?>"  class="dropdown-item">Settings</a>
-                                    <a href="testimonial.php"  class="dropdown-item">Client</a>
+                                    <!-- <a href="testimonial.php"  class="dropdown-item">Client</a> -->
                                     <!-- <a href="404.html" class="dropdown-item">404 Page</a> -->
                                 </div>
                             </div>             
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                             <a href="about.php" class="nav-item nav-link">About</a>
+                            <a href="testimonial.php" class="nav-item nav-link">Client</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
