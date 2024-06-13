@@ -94,10 +94,8 @@ include_once "header.php";
               <th>l.name</th>
               <th>email</th>
               <th>country</th>
-              <th>city</th>
-              <th>address</th>
-              <th>phone_number</th>
-              <th>price  </th>
+              <th>Status</th>
+              <th>price In USD  </th>
               <th>Date_Modify</th>
               <th>Action</th>
 
@@ -117,9 +115,7 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 <td> ' . $row->lname . '</td>
 <td> ' . $row->email . '</td>
 <td> ' . $row->country . '</td>
-<td> ' . $row->city . '</td>
-<td> ' . $row->address . '</td>
-<td> ' . $row->phone_number . '</td>
+<td> ' . $row->status . '</td>
 <td> ' . $row->price . '</td>
 <td> ' . $row->created_at . '</td>
 <td>
@@ -139,9 +135,7 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
                       <td>l.name</td>
                       <td>email</td>
                       <td>country</td>
-                      <td>city</td>
                       <td>address</td>
-                      <td>phone_number</td>
                       <td>price</td>
                       <td>Date of Admission</td>
                       <td>Actions</td>
