@@ -49,7 +49,6 @@ include_once "header.php";
                     <td>Description</td>
                     <td>Stock</td>
                     <td>Purchaseprice</td>
-                    <td>Status</td>
                     <td>Saleprice</td>
                     <td>Image</td>
                     <td>Actionicons</td>

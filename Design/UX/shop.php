@@ -138,7 +138,7 @@ $num_categories = $row_categories['num_categories'];
                                 <?php foreach ($allfeaturedProducts as $featured) : ?>
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                        <img src="../../ui/productimages/<?php echo $featured->image; ?>"" class="img-fluid rounded" alt="">
+                                        <img src="../../ui/productimages/<?php echo $featured->image; ?>" class="img-fluid rounded" alt="">
                                     </div>
                                     <div>
                                         <h6 class="mb-2"><?php echo $featured->product; ?></h6>

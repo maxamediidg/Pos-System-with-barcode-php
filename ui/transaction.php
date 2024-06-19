@@ -119,7 +119,7 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 <td> ' . $row->price . '</td>
 <td> ' . $row->created_at . '</td>
 <td>
-  <a href="employeeDetails.php?id='.$row->id.'" class="btn btn-warning mx-2">
+  <a href="updateOrder.php?id='.$row->id.'" class="btn btn-warning mx-2">
  <i class="bi-bi-pencil-square"></i>Update</a>
 </td>
 </tr>';

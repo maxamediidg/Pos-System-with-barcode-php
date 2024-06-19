@@ -48,6 +48,7 @@ $categories = $pdo->query("SELECT * FROM tbl_category");
 $categories->execute();
 $allcategories = $categories->fetchAll(PDO::FETCH_OBJ);
 
+
 //features 
 $featured = $pdo->query("SELECT * FROM tbl_product WHERE barcode between '10-50' and '50-90'");
 $featured->execute();
@@ -88,6 +89,13 @@ if (isset($_SESSION['userid'])) {
 
 
 
+?>
+
+<?php
+//products 
+$client = $pdo->query("SELECT * FROM tbl_client");
+$client->execute();
+$allclient = $client->fetchAll(PDO::FETCH_OBJ);
 ?>
 
 
@@ -221,26 +229,26 @@ if (isset($_SESSION['userid'])) {
                                         <div class="col-6">
                                             <div class="row bg-light align-items-center text-center justify-content-center py-2">
                                                 <div class="col-6">
-                                                    <p class="mb-0">Weight</p>
+                                                    <p class="mb-0">Stock</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">1 kg</p>
+                                                    <p class="mb-0"><?php echo $products->stock; ?></p>
                                                 </div>
                                             </div>
                                             <div class="row text-center align-items-center justify-content-center py-2">
                                                 <div class="col-6">
-                                                    <p class="mb-0">Country of Origin</p>
+                                                    <p class="mb-0">Country of Origin </p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">Agro Farm</p>
+                                                    <p class="mb-0"><?php echo $products->country; ?></p>
                                                 </div>
                                             </div>
                                             <div class="row bg-light text-center align-items-center justify-content-center py-2">
                                                 <div class="col-6">
-                                                    <p class="mb-0">Quality</p>
+                                                    <p class="mb-0">Purchase Price</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">Organic</p>
+                                                    <p class="mb-0"><?php echo $products->purchaseprice; ?></p>
                                                 </div>
                                             </div>
                                             <div class="row text-center align-items-center justify-content-center py-2">
@@ -309,72 +317,73 @@ if (isset($_SESSION['userid'])) {
                             </div>
                         </div>
                     </div>
-                    <form action="#">
-                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
-                        <div class="row g-4">
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email *">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="border-bottom rounded my-4">
-                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="d-flex justify-content-between py-3 mb-5">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 me-3">Please rate:</p>
-                                        <div class="d-flex align-items-center" style="font-size: 12px;">
-                                            <i class="fa fa-star text-muted"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-4 col-xl-3">
-                <div class="row g-4 fruite">
-                    <div class="col-lg-12">
-                        <div class="input-group w-100 mx-auto d-flex mb-4">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                        </div>
-                        <div class="mb-4">
-                            <h4>Categories</h4>
-                            <?php foreach ($allcategories as $category) : ?>
-                                <ul class="list-unstyled fruite-categorie">
-                                    <li>
-                                        <div class="d-flex justify-content-between fruite-name">
-                                            <a href="#"><i class="fas fa-apple-alt me-2"></i><?php echo $category->category; ?></a>
-                                            <span></span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            <?php endforeach; ?>
 
-                            </ul>
-                        </div>
+                        <form action="#">
+                            <h4 class="mb-5 fw-bold">Leave a Reply</h4>
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="border-bottom rounded">
+                                        <input type="email" class="form-control border-0" placeholder="Your Email *">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="border-bottom rounded my-4">
+                                        <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between py-3 mb-5">
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0 me-3">Please rate:</p>
+                                            <div class="d-flex align-items-center" style="font-size: 12px;">
+                                                <i class="fa fa-star text-muted"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-lg-12">
-                                <h4 class="mb-3">Featured products</h4>
-                                <?php foreach ($allfeaturedProducts as $featured) : ?>
+                </div>
+                <div class="col-lg-4 col-xl-3">
+                    <div class="row g-4 fruite">
+                        <div class="col-lg-12">
+                            <div class="input-group w-100 mx-auto d-flex mb-4">
+                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div class="mb-4">
+                                <h4>Categories</h4>
+                                <?php foreach ($allcategories as $category) : ?>
+                                    <ul class="list-unstyled fruite-categorie">
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i><?php echo $category->category; ?></a>
+                                                <span></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                <?php endforeach; ?>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h4 class="mb-3">Featured products</h4>
+                            <?php foreach ($allfeaturedProducts as $featured) : ?>
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                        <img src="../../ui/productimages/<?php echo $featured->image; ?>"" class="img-fluid rounded" alt="">
+                                        <img src="../../ui/productimages/<?php echo $featured->image; ?>"" class=" img-fluid rounded" alt="">
                                     </div>
                                     <div>
                                         <h6 class="mb-2"><?php echo $featured->product; ?></h6>
@@ -391,83 +400,83 @@ if (isset($_SESSION['userid'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <?php endforeach; ?>
-                            </div>
-                    <div class="col-lg-12"> 
-                        <div class="position-relative">
-                        <img src="img/logo-color.png" class="img-fluid w-100 rounded" alt="">
-                                    <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                        <h3 class="text-secondary fw-bold"><br>🚀 <br></h3>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="position-relative">
+                                <img src="img/logo-color.png" class="img-fluid w-100 rounded" alt="">
+                                <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
+                                    <h3 class="text-secondary fw-bold"><br>🚀 <br></h3>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <h1 class="fw-bold mb-0">Related products</h1>
-        <div class="vesitable">
-            <div class="owl-carousel vegetable-carousel justify-content-center">
-                <?php foreach ($allproducts as $products) : ?>
-                    <div class="border border-primary rounded position-relative vesitable-item">
-                        <div class="vesitable-img">
-                            <img src="../../ui/productimages/<?php echo $products->image; ?>" class="img-fluid w-100 rounded-top" alt="">
-                        </div>
-                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;"><?php echo $products->stock; ?></div>
-                        <div class="p-4 pb-0 rounded-bottom">
-                            <h4><?php echo $products->product; ?></h4>
-                            <p><?php echo $products->description; ?></p>
-                            <div class="d-flex justify-content-between flex-lg-wrap">
-                                <p class="text-dark fs-5 fw-bold">$<?php echo $products->saleprice; ?> in USD</p>
-                                <a href="shop-detail.php?id=<?php echo $products->pid; ?>" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+            <h1 class="fw-bold mb-0">Related products</h1>
+            <div class="vesitable">
+                <div class="owl-carousel vegetable-carousel justify-content-center">
+                    <?php foreach ($allproducts as $products) : ?>
+                        <div class="border border-primary rounded position-relative vesitable-item">
+                            <div class="vesitable-img">
+                                <img src="../../ui/productimages/<?php echo $products->image; ?>" class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;"><?php echo $products->stock; ?></div>
+                            <div class="p-4 pb-0 rounded-bottom">
+                                <h4><?php echo $products->product; ?></h4>
+                                <p><?php echo $products->description; ?></p>
+                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <p class="text-dark fs-5 fw-bold">$<?php echo $products->saleprice; ?> in USD</p>
+                                    <a href="shop-detail.php?id=<?php echo $products->pid; ?>" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach ?>
+                    <?php endforeach ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Single Product End -->
+    <!-- Single Product End -->
 
-<?php include_once "footeruser.php"; ?>
+    <?php include_once "footeruser.php"; ?>
 
-<script>
-    $(".btn-insert").on("click", function(e) {
-        e.preventDefault();
+    <script>
+        $(".btn-insert").on("click", function(e) {
+            e.preventDefault();
 
-        var form_data = $("#form-data").serialize() + '&submit=submit';
+            var form_data = $("#form-data").serialize() + '&submit=submit';
 
-        $.ajax({
-            url: "shop-detail.php?id=<?php echo $id; ?>",
-            method: "post",
-            data: form_data,
-            success: function() {
-                alert("Product added to cart successfully");
-                (".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
-                WithRef();
+            $.ajax({
+                url: "shop-detail.php?id=<?php echo $id; ?>",
+                method: "post",
+                data: form_data,
+                success: function() {
+                    alert("Product added to cart successfully");
+                    (".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
+                    WithRef();
+                }
+            });
+
+            function WithRef() {
+                $("body").load("shop-detail.php?id=<?php echo $id; ?>");
             }
+
+            $(".pro_qty").mouseup(function() {
+
+
+
+                var $el = $(this).closest('form');
+
+
+                var pro_qty = $el.find(".pro_qty").val();
+                var pro_price = $el.find(".pro_price").val();
+
+                var subtotal = pro_qty * pro_price;
+                //alert(subtotal);
+                $el.find(".subtotal_price").val("");
+
+                $el.find(".subtotal_price").val(subtotal);
+            });
+
         });
-
-        function WithRef() {
-            $("body").load("shop-detail.php?id=<?php echo $id; ?>");
-        }
-
-        $(".pro_qty").mouseup(function() {
-
-
-
-            var $el = $(this).closest('form');
-
-
-            var pro_qty = $el.find(".pro_qty").val();
-            var pro_price = $el.find(".pro_price").val();
-
-            var subtotal = pro_qty * pro_price;
-            //alert(subtotal);
-            $el.find(".subtotal_price").val("");
-
-            $el.find(".subtotal_price").val(subtotal);
-        });
-
-    });
-</script>
+    </script>
