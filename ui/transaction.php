@@ -93,12 +93,11 @@ include_once "header.php";
               <th>name</th>
               <th>l.name</th>
               <th>email</th>
+              <th>address</th>
               <th>country</th>
               <th>Status</th>
               <th>price In USD  </th>
               <th>Date_Modify</th>
-              <th>Action</th>
-
             </tr>
           </thead>
           <tbody>
@@ -114,14 +113,12 @@ while ($row = $select->fetch(PDO::FETCH_OBJ)) {
 <td> ' . $row->name . '</td>
 <td> ' . $row->lname . '</td>
 <td> ' . $row->email . '</td>
+<td> ' . $row->address . '</td>
 <td> ' . $row->country . '</td>
 <td> ' . $row->status . '</td>
 <td> ' . $row->price . '</td>
 <td> ' . $row->created_at . '</td>
-<td>
-  <a href="updateOrder.php?id='.$row->id.'" class="btn btn-warning mx-2">
- <i class="bi-bi-pencil-square"></i>Update</a>
-</td>
+
 </tr>';
 }
 

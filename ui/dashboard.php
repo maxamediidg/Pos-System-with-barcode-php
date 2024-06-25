@@ -8,7 +8,30 @@ if ($_SESSION['useremail'] == "") {
 }
 
 include_once "header.php";
+if (isset($_POST["btnDateFilter"])) {
+  $fromdate = $_POST["datepicker_1"];
+  $todate = $_POST["datepicker_2"];
 
+  // Convert dates to the format required by SQL (YYYY-MM-DD)
+  $fromdate = date("Y-m-d", strtotime($fromdate));
+  $todate = date("Y-m-d", strtotime($todate));
+
+  $sel_tbl_invoice_query = "SELECT * FROM `tbl_invoice` WHERE `order_date` BETWEEN :fromdate AND :todate";
+  $sel_tbl_invoice = $pdo->prepare($sel_tbl_invoice_query);
+  $sel_tbl_invoice->bindParam(":fromdate", $fromdate);
+  $sel_tbl_invoice->bindParam(":todate", $todate);
+
+  $get_box_query = "SELECT COUNT(invoice_id) AS `total_invoice`, SUM(total) AS `net_total`, SUM(subtotal) AS `sub_total` FROM `tbl_invoice` WHERE `order_date` BETWEEN :fromdate AND :todate";
+  $get_box = $pdo->prepare($get_box_query);
+  $get_box->bindParam(":fromdate", $fromdate);
+  $get_box->bindParam(":todate", $todate);
+} else {
+  $sel_tbl_invoice_query = "SELECT * FROM `tbl_invoice`";
+  $sel_tbl_invoice = $pdo->prepare($sel_tbl_invoice_query);
+
+  $get_box_query = "SELECT COUNT(invoice_id) AS `total_invoice`, SUM(total) AS `net_total`, SUM(subtotal) AS `sub_total` FROM `tbl_invoice`";
+  $get_box = $pdo->prepare($get_box_query);
+}
 ?>
 
 
@@ -148,6 +171,7 @@ include_once "header.php";
                     <!-- ./col -->
                   </div>
 
+                  
                   <!-- /.info-box -->
                 </div>
 
@@ -156,7 +180,32 @@ include_once "header.php";
             </div>
             <!-- /.info-box -->
           </div>
-
+          <div class="row">
+                            <?php 
+                            $get_box->execute();
+                            $row_get_box = $get_box->fetch(PDO::FETCH_OBJ);
+                            ?>
+                           
+                            <div class="clearfix visible-sm-block"></div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-green"><i class="fa fa-usd"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">SUB TOTAL</span>
+                                        <span class="info-box-number"><?php echo number_format($row_get_box->sub_total); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-yellow"><i class="fa fa-usd"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">GRAND TOTAL</span>
+                                        <span class="info-box-number"><?php echo number_format($row_get_box->net_total); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
         </div>
       </div>
 

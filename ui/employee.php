@@ -229,8 +229,6 @@ $_SESSION['status_code']="warning";
       <a href="employeeDetails.php?id='.$row->id.'" class="btn btn-warning mx-2">
      <i class="bi-bi-pencil-square"></i>  Details</a>
 
-<a href="editemployee.php?id=' . $row->id .'" class="btn btn-success mx-2">
-     <i class="bi-bi-pencil-square"></i>  Edit</a></div>
 
  <a href="employee.php?id='.$row->id.'"" class="btn btn-danger mx-2">
      <i class="bi-bi-pencil-square"></i>  Delete </a>
